@@ -1,10 +1,10 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {} }:
 
 pkgs.mkShell {
 
 	buildInputs = with pkgs; [
 		# put your packages here!
-		python313 pkgs.nodejs pkgs.mysql pkgs.yarn 
+		python313 nodejs mariadb yarn nmap 
 	];
 	
 	shellHook = ''
@@ -15,20 +15,35 @@ pkgs.mkShell {
       npm install
     fi
 	
+    MYSQL_BASEDIR=${pkgs.mariadb}
+    MYSQL_HOME="$PWD/mysql"
+    MYSQL_DATADIR="$MYSQL_HOME/data"
+    export MYSQL_UNIX_PORT="$MYSQL_HOME/mysql.sock"
+    MYSQL_PID_FILE="$MYSQL_HOME/mysql.pid"
+    alias mysql='mysql -u root'
 
-	# Create a MySQL data directory if it doesn't exist
-    if [ ! -d ./mysql-data ]; then
-      echo "Initializing MySQL data directory..."
-      mysql_install_db --datadir=./mysql-data
+    if [ ! -d "$MYSQL_HOME" ]; then
+      # Make sure to use normal authentication method otherwise we can only
+      # connect with unix account. But users do not actually exists in nix.
+      mysql_install_db --no-defaults --auth-root-authentication-method=normal \
+        --datadir="$MYSQL_DATADIR" --basedir="$MYSQL_BASEDIR" \
+        --pid-file="$MYSQL_PID_FILE"
     fi
 
-    # Start the MySQL server on a specific port (default: 3306)
-    echo "Starting MySQL server on port 3306..."
-    mysqld --datadir=./mysql-data --socket=./mysql.sock --port=3306 --bind-address=0.0.0.0 &
+    # Starts the daemon
+    # - Don't load mariadb global defaults in /etc with `--no-defaults`
+    # - Disable networking with `--skip-networking` and only use the socket so 
+    #   multiple instances can run at once
+    mysqld --no-defaults --skip-networking --datadir="$MYSQL_DATADIR" --pid-file="$MYSQL_PID_FILE" \
+      --socket="$MYSQL_UNIX_PORT" 2> "$MYSQL_HOME/mysql.log" &
+    MYSQL_PID=$!
 
-    # Give the server some time to start
-    sleep 5
-
-    echo "MySQL server is running. You can connect using 'mysql' command or from MySQL Workbench on localhost:3306."
+    finish()
+    {
+      mysqladmin -u root --socket="$MYSQL_UNIX_PORT" shutdown
+      kill $MYSQL_PID
+      wait $MYSQL_PID
+    }
+    trap finish EXIT
   '';
 }
