@@ -7,18 +7,26 @@
         <title>This is a test</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="login.css">
     </head>
     <body>
-       
-
-        <form method=POST id='loginForm' action='#'>
-            <input type='text' id='username' name='username' placeholder='Username'>
-            <input type='password' id='password' name='password' placeholder='Password'>
-            <button type="submit">Login</button>
-        </form>
-        <div id="data"></div>
+        <div class="loginContainer">
+            <form method=POST id='loginForm' action='#'>
+                <div class="form-group">
+                    <label for = "username">Username</label>
+                    <input type='text' id='username' name='username' placeholder='Username'>
+                </div>
+                <div class="form-group">
+                    <label for = "password">Password</label>
+                    <input type='password' id='password' name='password' placeholder='Password'>
+                </div>
+        
+                <button class="btn" type="submit">Login</button>
+                <button class="btn" type="submit">Sign Up</button>
+            </form>
+        </div>
+        
         <script src= "form.js"></script>
-        <script src= "call.js" async defer></script>
+        
     </body>
 </html>

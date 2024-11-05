@@ -1,0 +1,27 @@
+body {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.212), rgb(145, 115, 143));
+    margin: 0;
+    height: 100vh;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    color: black;
+
+}
+
+.loginContainer {
+    text-align: center;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    
+}
