@@ -38,7 +38,7 @@ app.post('/login', (req, res) => {
 
         const user = results[0];
 
-        const isMatch = password === user.password;
+        const isMatch = await bycrypt.compare(password, user.password);
 
         if (isMatch) {
             return res.status(200).json({ message: 'Login successful', redirectUrl: "https://www.youtube.com/"});
@@ -49,18 +49,23 @@ app.post('/login', (req, res) => {
 });
 
 //SignUp Endpoint
-app.post('/signup', (req, res)=>{
+app.post('/signup', async (req, res)=>{
     const { username, password } = req.body;
 
     if (!username || !password) {
         return res.status(400).json({ message: 'Please provide username and password'});
     }
 
-    const query = '';
-
-
-
-
+    try {
+        const hashedPW = await bcrypt.hash(password, 10);
+        const query = 'INSERT INTO user_table (username, password) VALUES (?, ?)';
+        connection.query(query, [username, hashedPW], (err, results) => {
+            if (err) return res.status(500).json({ message: 'Database error' });
+            return res.status(201).json({ message: 'User registered successfully'});
+        });
+    } catch (error) {
+        return res.status(500).json({ message: 'Error processing request'});
+    }
 });
 
 connection.query('SELECT * FROM user_table', (error, results, fields) => {
