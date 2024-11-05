@@ -17,12 +17,7 @@ connection.connect((err) => {
 
 });
 
-connection.query('SELECT * FROM user_table', (error, results, fields) => {
-    if (error) throw error;
-    console.log(results); // Results from the database
-  });
-  
-
+module.exports = connection;
 
 
 

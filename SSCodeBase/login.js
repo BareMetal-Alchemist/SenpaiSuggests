@@ -1,19 +1,10 @@
+// index.js
 const express = require('express');
-const mysql = require('mysql2');
-const cors = require('cors');
-const bcrypt = require('bcrypt');
-const helmet = require('helmet');
-const connection = require('./database');
+const bycrypt = require('bcrypt');
+const db = require('connection');
 
 const app = express();
-const port = 3002;
-
-app.use(cors());
 app.use(express.json());
-
-app.use(express.static('public'));
-
-
 
 // Login Endpoint
 app.post('/login', (req, res) => {
@@ -28,7 +19,7 @@ app.post('/login', (req, res) => {
 
 
     const query = 'SELECT * FROM users WHERE username = ?';
-    connection.query(query, [username], async (err, results) => {
+    db.query(query, [username], async (err, results) => {
 
         if(err) return res.status(500).json({ message: 'Database error'});
 
@@ -48,23 +39,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-connection.query('SELECT * FROM user_table', (error, results, fields) => {
-  if (error) throw error;
-  console.log(results); // Results from the database
- 
-});
-
-// Define an API endpoint to fetch data from the database
-app.get('/api/data', (req, res) => {
-  connection.query('SELECT * FROM user_table', (error, results) => {
-    if (error) {
-      res.status(500).json({ error: 'Error fetching data' });
-      return;
-    }
-    res.json(results); // Send the data as JSON
-  });
-});
-
-app.listen(port, () => {
-   console.log('Server running on port ' + port);
+app.listen(3000, () => {
+   console.log('Server running on port 3000');
 });

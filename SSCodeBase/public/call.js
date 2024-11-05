@@ -1,6 +1,6 @@
 async function fetchData() {
     try {
-      const response = await fetch('http://localhost:3000/api/data'); // API endpoint on your server
+      const response = await fetch('http://localhost:3002/api/data'); // API endpoint on your server
       const data = await response.json();
 
       // Display data in the HTML
