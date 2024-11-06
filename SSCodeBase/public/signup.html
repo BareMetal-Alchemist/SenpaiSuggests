@@ -7,32 +7,40 @@
         <title>This is a test</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="signup.css">
     </head>
     <body>
 
-        <video autoplay muted loop playsinline class="video">
-            <source src="anime.mp4" type="video/mp4">
-            hello
-        </video>
 
-
-        <div class="loginContainer">
-            <form method=POST id='loginForm' action='#'>
-                <div class="form-group">
-                    <label for = "username">Username</label>
-                    <input type='text' id='username' name='username' placeholder='Username'>
-                </div>
-                <div class="form-group">
-                    <label for = "password">Password</label>
-                    <input type='password' id='password' name='password' placeholder='Password'>
-                </div>
-        
-                <button class="btn" type="submit">Login</button>
-                <button class="btn" type="submit">Sign Up</button>
-            </form>
-        </div>
-        
+        <div class="signup-page">
+            <div class="death-note-rules">
+              <h2>Death Note Rules</h2>
+              <p>1. The human whose name is written in this note shall die...</p>
+              <p>2. This note will not take effect unless the writer has the person's face in mind...</p>
+              <!-- Additional rules -->
+            </div>
+            
+            <!-- Sign-In Form Section with Form Action -->
+            <div class="sign-in-form">
+              <h2>Sign Up</h2>
+              
+              <!-- Form Element with POST Method to Send Data -->
+              <form id="sign-in-form" action=# method="POST">
+                <p id="entry">
+                  The human known as 
+                  <input type="text" id="username" name="username" placeholder="Username" required>
+                  will meet their fate by <input type="text" id="password" name="password" placeholder="Password" required>.
+                </p>
+                <button type="submit">Confirm Entry</button>
+              </form>
+            </div>
+          </div>
+          
+          
+          
+          
+          
+        <script src="deathnote.js"></script>
         <script src= "form.js"></script>
         
     </body>

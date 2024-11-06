@@ -1,20 +1,8 @@
-{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {} }:
-
-pkgs.mkShell {
-
-	buildInputs = with pkgs; [
-		# put your packages here!
-		python313Full nodejs-18_x  yarn nmap  mariadb 
-	];
-	
-	shellHook = ''
-    # Install npm packages on shell load if package.json is present
-    if [ -f package.json ]; then
-      echo "Installing npm packages..."
-      npm install
-    fi
-    
-     MYSQL_BASEDIR=${pkgs.mariadb}
+let pkgs = import <nixpkgs> {};
+in pkgs.mkShell {
+  buildInputs = [ pkgs.mariadb ];
+  shellHook = ''
+    MYSQL_BASEDIR=${pkgs.mariadb}
     MYSQL_HOME="$PWD/mysql"
     MYSQL_DATADIR="$MYSQL_HOME/data"
     export MYSQL_UNIX_PORT="$MYSQL_HOME/mysql.sock"
@@ -45,6 +33,4 @@ pkgs.mkShell {
     }
     trap finish EXIT
   '';
-
-	
 }
