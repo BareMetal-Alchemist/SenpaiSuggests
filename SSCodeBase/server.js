@@ -9,18 +9,24 @@ const path = require('path');
 
 
 const app = express();
-const port = 3002;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-
-
-
-
-
+// Route to fetch anime data from Jikan API
+app.get("/api/anime/:title", async (req, res) => {
+    const title = req.params.title;
+    try {
+      const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}`);
+      res.json(response.data);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching anime data" });
+    }
+  });
+  
 
 
 // Login Endpoint
@@ -108,8 +114,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
   
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+ 
 
 
 app.listen(port, () => {
