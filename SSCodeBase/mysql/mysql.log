@@ -1,35 +1,33 @@
-2024-11-06  5:39:40 0 [Note] Starting MariaDB 10.11.10-MariaDB source revision 3d0fb150289716ca75cd64d62823cf715ee47646 server_uid eoLohoTO1H4GKwTQD0XCdLBkfPQ= as process 29454
-2024-11-06  5:39:40 0 [Note] InnoDB: Compressed tables use zlib 1.3.1
-2024-11-06  5:39:40 0 [Note] InnoDB: Number of transaction pools: 1
-2024-11-06  5:39:40 0 [Note] InnoDB: Using AVX512 instructions
-2024-11-06  5:39:40 0 [Note] InnoDB: Using liburing
-2024-11-06  5:39:40 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
-2024-11-06  5:39:40 0 [Note] InnoDB: Initialized memory pressure event listener
-2024-11-06  5:39:40 0 [Note] InnoDB: Completed initialization of buffer pool
-2024-11-06  5:39:40 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
-2024-11-06  5:39:40 0 [Note] InnoDB: End of log at LSN=46846
-2024-11-06  5:39:40 0 [Note] InnoDB: 128 rollback segments are active.
-2024-11-06  5:39:40 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
-2024-11-06  5:39:40 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
-2024-11-06  5:39:40 0 [Note] InnoDB: log sequence number 46846; transaction id 14
-2024-11-06  5:39:40 0 [Note] Plugin 'FEEDBACK' is disabled.
-2024-11-06  5:39:40 0 [Note] InnoDB: Loading buffer pool(s) from /home/nplusplus/Code_Projects/Github_Repos/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
-2024-11-06  5:39:40 0 [Note] InnoDB: Buffer pool(s) load completed at 241106  5:39:40
-2024-11-06  5:39:40 0 [Note] mysqld: ready for connections.
-Version: '10.11.10-MariaDB'  socket: '/home/nplusplus/Code_Projects/Github_Repos/SenpaiSuggests/SSCodeBase/mysql/mysql.sock'  port: 0  MariaDB Server
-2024-11-06  5:42:17 11 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
-2024-11-06  6:07:49 16 [Warning] Aborted connection 16 to db: 'ss' user: 'root' host: 'localhost' (Got an error reading communication packets)
-2024-11-06  8:08:51 17 [Warning] Aborted connection 17 to db: 'ss' user: 'root' host: 'localhost' (Got an error reading communication packets)
-2024-11-06  8:28:30 18 [Warning] Aborted connection 18 to db: 'ss' user: 'root' host: 'localhost' (Got an error reading communication packets)
-2024-11-06  8:56:44 19 [Warning] Aborted connection 19 to db: 'ss' user: 'root' host: 'localhost' (Got an error reading communication packets)
-2024-11-06  9:07:07 20 [Warning] Aborted connection 20 to db: 'ss' user: 'root' host: 'localhost' (Got an error reading communication packets)
-2024-11-06  9:07:14 21 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
-2024-11-06  9:07:14 0 [Note] mysqld (initiated by: unknown): Normal shutdown
-2024-11-06  9:07:14 0 [Note] InnoDB: FTS optimize thread exiting.
-2024-11-06  9:07:14 0 [Note] InnoDB: Starting shutdown...
-2024-11-06  9:07:14 0 [Note] InnoDB: Dumping buffer pool(s) to /home/nplusplus/Code_Projects/Github_Repos/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
-2024-11-06  9:07:14 0 [Note] InnoDB: Buffer pool(s) dump completed at 241106  9:07:14
-2024-11-06  9:07:14 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
-2024-11-06  9:07:14 0 [Note] InnoDB: Shutdown completed; log sequence number 62918; transaction id 40
-2024-11-06  9:07:14 0 [Note] mysqld: Shutdown complete
-
+2024-11-07  6:55:23 0 [Note] Starting MariaDB 10.11.10-MariaDB source revision 3d0fb150289716ca75cd64d62823cf715ee47646 server_uid eoLohoTO1H4GKwTQD0XCdLBkfPQ= as process 15390
+2024-11-07  6:55:23 0 [Note] InnoDB: Compressed tables use zlib 1.3.1
+2024-11-07  6:55:23 0 [Note] InnoDB: Number of transaction pools: 1
+2024-11-07  6:55:23 0 [Note] InnoDB: Using AVX512 instructions
+2024-11-07  6:55:23 0 [Note] InnoDB: Using liburing
+2024-11-07  6:55:23 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
+2024-11-07  6:55:23 0 [Note] InnoDB: Initialized memory pressure event listener
+2024-11-07  6:55:23 0 [Note] InnoDB: Completed initialization of buffer pool
+2024-11-07  6:55:23 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
+2024-11-07  6:55:23 0 [Note] InnoDB: End of log at LSN=62918
+2024-11-07  6:55:23 0 [Note] InnoDB: 128 rollback segments are active.
+2024-11-07  6:55:23 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+2024-11-07  6:55:23 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+2024-11-07  6:55:23 0 [Note] InnoDB: log sequence number 62918; transaction id 41
+2024-11-07  6:55:23 0 [Note] InnoDB: Loading buffer pool(s) from /home/nplusplus/Code_Projects/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
+2024-11-07  6:55:23 0 [Note] Plugin 'FEEDBACK' is disabled.
+2024-11-07  6:55:24 0 [Note] InnoDB: Buffer pool(s) load completed at 241107  6:55:24
+2024-11-07  6:55:24 0 [Note] mysqld: ready for connections.
+Version: '10.11.10-MariaDB'  socket: '/home/nplusplus/Code_Projects/SenpaiSuggests/SSCodeBase/mysql/mysql.sock'  port: 0  MariaDB Server
+2024-11-07  7:00:41 3 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
+2024-11-07  7:03:17 5 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
+2024-11-07  7:08:21 8 [Warning] Aborted connection 8 to db: 'unconnected' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  7:08:21 7 [Warning] Aborted connection 7 to db: 'unconnected' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  7:08:29 9 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
+2024-11-07  7:11:44 12 [Warning] Aborted connection 12 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  7:13:12 13 [Warning] Aborted connection 13 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  7:52:04 14 [Warning] Aborted connection 14 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  7:53:44 15 [Warning] Aborted connection 15 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  8:15:51 16 [Warning] Aborted connection 16 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  8:33:18 17 [Warning] Aborted connection 17 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  8:34:19 18 [Warning] Aborted connection 18 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  8:43:09 19 [Warning] Aborted connection 19 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  9:04:18 20 [Warning] Aborted connection 20 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
