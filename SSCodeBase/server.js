@@ -55,7 +55,7 @@ app.post('/login', (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (isMatch) {
-            return res.status(200).json({ message: 'Login successful', redirectUrl: "https://www.youtube.com/"});
+            return res.status(200).json({ message: 'Login successful', redirectUrl: "mainmenu"});
         } else {
             return res.status(401).json({ message: 'Invalid credentials.'});
         }

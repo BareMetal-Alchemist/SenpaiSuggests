@@ -31,3 +31,7 @@ Version: '10.11.10-MariaDB'  socket: '/home/nplusplus/Code_Projects/SenpaiSugges
 2024-11-07  8:34:19 18 [Warning] Aborted connection 18 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2024-11-07  8:43:09 19 [Warning] Aborted connection 19 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2024-11-07  9:04:18 20 [Warning] Aborted connection 20 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  9:31:25 21 [Warning] Aborted connection 21 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  9:42:25 22 [Warning] Aborted connection 22 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  9:42:49 23 [Warning] Aborted connection 23 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-07  9:42:59 24 [Warning] Access denied for user 'root'@'localhost' (using password: NO)

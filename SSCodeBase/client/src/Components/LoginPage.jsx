@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../LoginPage.module.css'; 
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -10,7 +11,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3002/login', { username, password });
+      const response = await axios.post('http://localhost:5000/login', { username, password });
       setMessage(response.data.message);
       if (response.data.redirectUrl) {
         window.location.href = response.data.redirectUrl;
@@ -22,7 +23,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="loginContainer">
+    <div className="styles.loginContainer">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
