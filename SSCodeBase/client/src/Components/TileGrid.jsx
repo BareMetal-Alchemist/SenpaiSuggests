@@ -1,4 +1,3 @@
-import React from "react";
 import Tile from "./Tile";
 
 export default function TileGrid() {
@@ -7,7 +6,7 @@ export default function TileGrid() {
   return (
     // return resulting grid of <Tile> compon.s
     <div className="tilegrid">
-
+      <Tile />
     </div>
   )
 }
