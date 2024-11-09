@@ -1,25 +1,59 @@
-/* Anime box styling to match the theme */
+/* Anime box styling */
 .anime-box {
     position: relative;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect for depth */
-    border-radius: 15px; /* Rounded corners */
-    padding: 20px;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5), 0px 0px 30px rgba(255, 0, 150, 0.3); /* Soft white and pink shadow */
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    transition: transform 0.3s ease; /* Optional hover effect */
-    
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3), 0px 0px 30px rgba(255, 0, 150, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    height: 250px; /* Adjust height as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the title horizontally */
+    justify-content: flex-end; /* Keeps the title at the bottom */
+    background: rgba(255, 255, 255, 0.2); /* Reflective effect */
+    perspective: 1000px; /* Enables 3D transform effect */
 }
 
+
+.anime-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    mix-blend-mode: overlay; /* Reflective blend effect */
+    pointer-events: none;
+    opacity: 0.2; /* Adjust opacity for the level of reflectiveness */
+    transition: opacity 0.3s;
+}
 .anime-box:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5), 0px 0px 35px rgba(255, 0, 150, 0.3);
 }
 
 .anime-box img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px; /* Rounds the image edges */
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), 0px 0px 15px rgba(255, 0, 150, 0.3); /* Image shadow to match theme */
+    width: 80%;
+    height: 80%; /* Ensures the image takes up most of the box */
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.anime-box h2 {
+    width: 80%;
+    padding: 10px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0); /* Dark background for readability */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

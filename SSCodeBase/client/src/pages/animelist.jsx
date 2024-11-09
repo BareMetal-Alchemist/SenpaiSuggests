@@ -89,52 +89,54 @@ function AnimeList() {
     );
 
     return (
-        <div className="background">
-        <div className="yes">
-            <input
-                className="search"
-                type="text"
-                placeholder="Enter anime title"
-                value={searchTitle}
-                onChange={handleSearchChange}
-                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            />
-            <button onClick={handleSearch}>Search Anime</button>
+    <div className="background">
+        
+            <div className="yes">
+                <input
+                    className="search"
+                    type="text"
+                    placeholder="Enter anime title"
+                    value={searchTitle}
+                    onChange={handleSearchChange}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                />
+                <button onClick={handleSearch}>Search Anime</button>
 
-            {suggestions.length > 0 && (
-                <ul className="suggestions">
-                    {suggestions.slice(0, SUGGESTIONS_LIMIT).map((anime, index) => (
-                        <li key={index}>{anime.title}</li>
-                    ))}
-                </ul>
-            )}
-
-            {showResults && (
-            
-                <div className="yes"> 
-                    <div className="anime-list">
-                        {currentResults.map((anime, index) => (
-                            <AnimeBox key={index} title={anime.title} imageUrl={anime.imageUrl} />
+                {suggestions.length > 0 && (
+                    <ul className="suggestions">
+                        {suggestions.slice(0, SUGGESTIONS_LIMIT).map((anime, index) => (
+                            <li key={index}>{anime.title}</li>
                         ))}
-                    </div>
-                    <div className="pagination">
-                        {Array.from({ length: Math.ceil(animeList.length / RESULTS_PER_PAGE) }, (_, i) => (
-                            <button
-                                key={i}
-                                className={currentPage === i + 1 ? 'active' : ''}
-                                onClick={() => handlePageChange(i + 1)}
-                            >
-                                {i + 1}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            
-            )}
+                    </ul>
+                )}
 
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-        </div>
-        </div>
+                {showResults && (
+                
+                    <div id="no"> 
+                        <div className="anime-list">
+                            {currentResults.map((anime, index) => (
+                                <AnimeBox key={index} title={anime.title} imageUrl={anime.imageUrl} />
+                            ))}
+                        </div>
+                        <div className="pagination">
+                            {Array.from({ length: Math.ceil(animeList.length / RESULTS_PER_PAGE) }, (_, i) => (
+                                <button
+                                    key={i}
+                                    className={currentPage === i + 1 ? 'active' : ''}
+                                    onClick={() => handlePageChange(i + 1)}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                
+                )}
+
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+            </div>
+            <div className='image'></div>
+    </div>
     );
 }
 
