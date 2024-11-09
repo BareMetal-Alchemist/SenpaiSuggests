@@ -3,16 +3,30 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const helmet = require('helmet');
+const axios = require("axios");
 const connection = require('./database');
+const path = require('path');
+
 
 const app = express();
-const port = 3002;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static('/client/public'));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
+// Route to fetch anime data from Jikan API
+app.get("/api/anime/:title", async (req, res) => {
+    const title = req.params.title;
+    try {
+      const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}`);
+      res.json(response.data);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching anime data" });
+    }
+  });
+  
 
 
 // Login Endpoint
@@ -41,7 +55,7 @@ app.post('/login', (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (isMatch) {
-            return res.status(200).json({ message: 'Login successful', redirectUrl: "https://www.youtube.com/"});
+            return res.status(200).json({ message: 'Login successful', redirectUrl: "mainmenu"});
         } else {
             return res.status(401).json({ message: 'Invalid credentials.'});
         }
@@ -94,6 +108,15 @@ connection.query('SELECT * FROM user_table', (error, results, fields) => {
 //   });
 // });
 
-app.listen(port, () => {
+
+// Serve React app for any route not handled by the API
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+  
+ 
+
+
+app.listen(port, '0.0.0.0', () => {
    console.log('Server running on port ' + port);
 });
