@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.get("/api/anime/:title", async (req, res) => {
     const title = req.params.title;
     try {
-        const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}`);
+        const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}&sfw=true`);
         console.log("Jikan API Response Data:", response.data); // Log the actual data received
         res.json(response.data);
     } catch (error) {

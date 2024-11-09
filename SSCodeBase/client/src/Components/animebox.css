@@ -1,16 +1,25 @@
-/* AnimeBox.css */
+/* Anime box styling to match the theme */
 .anime-box {
-    border: 1px solid #ddd;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for depth */
+    border-radius: 15px; /* Rounded corners */
     padding: 20px;
-    margin: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5), 0px 0px 30px rgba(255, 0, 150, 0.3); /* Soft white and pink shadow */
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
-    width: 200px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    transition: transform 0.3s ease; /* Optional hover effect */
+    
+}
+
+.anime-box:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .anime-box img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px; /* Rounds the image edges */
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5), 0px 0px 15px rgba(255, 0, 150, 0.3); /* Image shadow to match theme */
 }
