@@ -22,9 +22,3 @@ const entries = [
   document.addEventListener("DOMContentLoaded", () => {
     updateEntryTemplate();
   });
-  
- 
-  
-   
-  
-  
