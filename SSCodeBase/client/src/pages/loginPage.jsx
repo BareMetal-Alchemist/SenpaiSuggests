@@ -5,14 +5,17 @@ import VideoBackground from '../Components/videobackground';
 import LoginForm from '../Components/loginForm';
 import './loginPage.css';
 
+
+
+
 function Login() {
   return (
-    <div className="loginPage">
+      <div className="hello">
         <LoginForm />
-      <VideoBackground />
-      
-    </div>
+        <VideoBackground />
+      </div>
   );
+ 
 }
 
 export default Login;

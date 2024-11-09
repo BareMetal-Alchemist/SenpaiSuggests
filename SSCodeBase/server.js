@@ -20,12 +20,15 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.get("/api/anime/:title", async (req, res) => {
     const title = req.params.title;
     try {
-      const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}`);
-      res.json(response.data);
+        const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}`);
+        console.log("Jikan API Response Data:", response.data); // Log the actual data received
+        res.json(response.data);
     } catch (error) {
-      res.status(500).json({ message: "Error fetching anime data" });
+        console.error("Error fetching data from Jikan API:", error.message, error.response?.data); // Log detailed error message and any response data
+        res.status(500).json({ message: "Error fetching anime data", details: error.message });
     }
-  });
+});
+
   
 
 
