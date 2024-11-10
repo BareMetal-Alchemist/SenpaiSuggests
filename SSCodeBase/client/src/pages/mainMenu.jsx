@@ -5,7 +5,7 @@ function MainMenu() {
   return (
     <div className={styles.mainMenuContainer}>
       <div className={styles.header}>
-        <h1 className={styles.title}>SenpaiSuggests</h1>
+        <h1 className={styles.title}>SenpAISuggests</h1>
         <nav className={styles.navOptions}>
           <a href="/watchlist" className={styles.navLink}>My Watchlist</a>
           <a href="/wishlist" className={styles.navLink}>My Wishlist</a>
