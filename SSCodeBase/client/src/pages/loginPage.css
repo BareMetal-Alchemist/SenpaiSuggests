@@ -123,3 +123,16 @@ html, body {
     color: transparent;
 
 }
+
+
+#highlight {
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.384), /* Outer white glow */
+                 0px 0px 20px rgba(154, 186, 223, 0.4),   /* Pinkish theme glow */
+                 0px 0px 30px rgba(0, 132, 255, 0.6);
+    display: inline-block; /* Ensure it applies only to this span */
+    background: linear-gradient(90deg, #74b4da, #10fcfc); /* Blue gradient for AI */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}

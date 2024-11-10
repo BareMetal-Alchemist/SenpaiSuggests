@@ -13,7 +13,7 @@ function Login() {
 
       
       <div className="hello">
-      <h1 id="title">Senpai Suggests</h1>
+      <h1 id="title">Senp<span id="highlight">ai</span> Suggests</h1>
         <LoginForm />
         <VideoBackground />
       </div>
