@@ -6,7 +6,8 @@ const helmet = require('helmet');
 const axios = require("axios");
 const connection = require('./database');
 const path = require('path');
-
+const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold, HarmBlockThreshhold } = require('@google/generative-ai');
+require('dotenv').config({ path: './key.env'});
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -16,16 +17,70 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+
+// Define generation configuration
+const generationConfig = {
+    temperature: 1,
+    topP: 0.95,
+    topK: 40,
+    maxOutputTokens: 8192,
+    responseMimeType: "application/json",
+  };
+  
+  // Route to get anime recommendations
+  app.post("/api/gemini", async (req, res) => {
+    const { animeTitles, feedback } = req.body; // Assume we get titles and feedback in the request body
+  
+    if (!animeTitles || !feedback) {
+      return res.status(400).json({ message: 'Anime titles and feedback are required.' });
+    }
+  
+    // Define the parts for the content
+    const parts = [
+      {
+        text: `input: User will pass in anime titles and passages about why they liked those titles. Use this information to respond with up to 10 recommendations for the user. Titles: ${animeTitles}. Reason: ${feedback}.`
+      },
+      {
+        text: "output: Respond with a list of 10 recommended animes based on these titles and reasons. Match the vibe that is interpreted, and provide only anime names in a list without hyphens or numbering."
+      }
+    ];
+  
+    try {
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      
+      // Make the API call to Gemini
+      const result = await model.generateContent({
+        contents: [{ role: "user", parts }], // Pass parts in the expected format
+        generationConfig,  // Include generation config
+      });
+  
+      // Log the full result for debugging purposes
+      console.log("Gemini API Response:", result);
+  
+      // Send the response back to the client
+      res.json({ recommendations: result.response.text() });
+    } catch (error) {
+      console.error("Error with Gemini API:", error.message);
+      res.status(500).json({ message: "Error generating recommendations", details: error.message });
+    }
+  });
+
+
 // Route to fetch anime data from Jikan API
 app.get("/api/anime/:title", async (req, res) => {
     const title = req.params.title;
     try {
-      const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}`);
-      res.json(response.data);
+        const response = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}&sfw=true`);
+        console.log("Jikan API Response Data:", response.data); // Log the actual data received
+        res.json(response.data);
     } catch (error) {
-      res.status(500).json({ message: "Error fetching anime data" });
+        console.error("Error fetching data from Jikan API:", error.message, error.response?.data); // Log detailed error message and any response data
+        res.status(500).json({ message: "Error fetching anime data", details: error.message });
     }
-  });
+});
+
   
 
 

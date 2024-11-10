@@ -1,0 +1,102 @@
+.anime-info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    backdrop-filter: blur(10px); /* Blurred background effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.anime-info-content {
+    background: rgba(15, 15, 25, 0.9); /* Semi-transparent, matching theme */
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 900px;
+    width: 90%;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8), 0px 0px 40px rgba(255, 0, 150, 0.3);
+}
+
+.anime-info-image img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 0, 150, 0.3); /* Theme-matching shadow effect */
+}
+
+.anime-info-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.anime-info-title {
+    margin: 0;
+    font-size: 2em;
+    color: #ff85d8; /* Theme color for title */
+}
+
+.anime-description {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.anime-info-details p {
+    margin: 10px 0;
+}
+
+/* Close button styling */
+.close-button {
+    position: absolute;
+    top: 30px;
+    right: 70px;
+    background: rgba(255, 0, 150, 0.6); /* Close button color to match theme */
+    color: #ffffff;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.close-button:hover {
+    background: rgba(255, 0, 150, 0.8); /* Darker on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .anime-info-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .anime-info-image img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .anime-info-title {
+        text-align: center;
+    }
+
+    .anime-info-details {
+        text-align: center;
+    }
+}
