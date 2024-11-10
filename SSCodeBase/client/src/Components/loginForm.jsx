@@ -1,7 +1,7 @@
 // src/components/LoginForm.js
 
 import React from 'react';
-import './loginForm.css';
+import "./loginForm.css";
 
 function LoginForm() {
   return (
@@ -17,7 +17,7 @@ function LoginForm() {
         </div>
 
         <button className="btn" type="submit">Login</button>
-        <button className="btn" type="button" onClick={() => window.location.href = 'signup.html'}>
+        <button className="btn" type="button" onClick={() => window.location.href = 'signup'}>
           Sign Up
         </button>
       </form>

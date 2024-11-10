@@ -1,11 +1,21 @@
-body {
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.hello {
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), #4a4e69);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.181), #4a4e69);
     margin: 0;
     height: 100vh;
     font-family: 'Arial', sans-serif;
+
 }
 
 .form-group {
@@ -58,7 +68,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* .loginContainer {
+.loginContainer {
     position: relative;
     z-index: 1;
     text-align: center;
@@ -71,9 +81,9 @@ body {
     box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5), 0px 0px 30px rgba(255, 0, 150, 0.3);
     color: #fff;
     font-family: 'Poppins', sans-serif;
-
-
+    margin-top: 130px;
 }
+
 
 .video {
     position: fixed;
@@ -83,6 +93,32 @@ body {
     height: 100vh;
     object-fit: cover;
     z-index: -1;
-    filter: brightness(0.4);
-    opacity: 80%;
-} */
+    filter: brightness(.8);
+    opacity: 100%;
+}
+
+@font-face {
+    font-family: 'animeFont';
+    src: url('../../public/animeFont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#title {
+    position: absolute;
+    font-family: 'animeFont';
+    top: 190px;
+    font-size: 90px;
+    text-align: center;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6), /* Outer white glow */
+                 0px 0px 20px rgba(255, 0, 150, 0.4),   /* Pinkish theme glow */
+                 0px 0px 30px rgba(255, 0, 150, 0.6);
+
+    background: linear-gradient(90deg, #ff85d8, #ff4081); /* Pinkish gradient */
+    -webkit-background-clip: text; /* For webkit browsers */
+    -webkit-text-fill-color: transparent; /* For webkit browsers */
+    background-clip: text;
+    color: transparent;
+
+}

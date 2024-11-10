@@ -6,7 +6,7 @@ import './videobackground.css';
 function VideoBackground() {
   return (
     <video autoPlay muted loop playsInline className="video">
-      <source src="anime.mp4" type="video/mp4" />
+      <source src="../../anime.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   );
