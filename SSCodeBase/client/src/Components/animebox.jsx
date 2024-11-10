@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./animebox.css";
-function AnimeBox({ title, imageUrl }) {
+function AnimeBox({ title, imageUrl, onClick }) {
     const boxRef = useRef(null);
 
     const handleMouseMove = (e) => {
@@ -27,6 +27,7 @@ function AnimeBox({ title, imageUrl }) {
             ref={boxRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            onClick={onClick}
         >
             <img src={imageUrl} alt={`${title}`} />
             <h2>{title}</h2>

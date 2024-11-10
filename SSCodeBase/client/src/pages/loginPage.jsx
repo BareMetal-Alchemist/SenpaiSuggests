@@ -10,11 +10,14 @@ import './loginPage.css';
 
 function Login() {
   return (
-  
+
+      
       <div className="hello">
+      <h1 id="title">Senpai Suggests</h1>
         <LoginForm />
         <VideoBackground />
       </div>
+    
   );
  
 }
