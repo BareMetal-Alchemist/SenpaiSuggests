@@ -1,22 +1,22 @@
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
 
-export default function GoogleAuth() {
+function NavigateToURL(url) {
+  window.location.href = url;
+}
+
+async function GoogleOAuth() {
+  const response = await fetch('http://localhost:5000/request', { method: 'post' });
+  const data = await response.json();
+  console.log('Google OAuth Data: ', data);
+
+  NavigateToURL(data.url);
+}
+
+export default function GoogleSigninButton() {
   return (
-    <GoogleOAuthProvider clientId='812767787151-figdc7q3ji25eg9uc83fbdh6qp0r4qrq.apps.googleusercontent.com'>
-      <GoogleLogin
-        onSuccess={(credentialResponse) => {
-          var credentialResponseDecoded = jwtDecode(
-            credentialResponse.credential
-          );
-          console.log(credentialResponseDecoded);
-        }}
-        onError={() => {
-          console.log('Login Failed');
-        }}
-        theme={'filled_black'}
-      />
-    </GoogleOAuthProvider>
-
+    <>
+      <button onClick={() => GoogleOAuth()}>
+        Google Signin
+      </button>
+    </>
   );
 }

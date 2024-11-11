@@ -7,9 +7,18 @@ const axios = require("axios");
 const connection = require('./database');
 const path = require('path');
 
+// Google OAuth2 required stuff:
+const authRouter = require('./google-auth-routes/oauth');
+const requestRouter = require('./google-auth-routes/request');
+// end of Google OAuth2 required stuff
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+// rest of Google OAuth2 stuff:
+app.use('/oauth', authRouter);
+app.use('/request', requestRouter);
+// end of all Google OAuth2 stuff in this file
 
 app.use(cors());
 app.use(express.json());
@@ -29,7 +38,7 @@ app.get("/api/anime/:title", async (req, res) => {
     }
 });
 
-  
+
 
 
 // Login Endpoint
@@ -39,7 +48,7 @@ app.post('/login', (req, res) => {
     if (!username || !password) {
 
         return res.status(400).json({ message: 'Please provide username and password.' });
-        
+
     }
 
 
@@ -77,7 +86,7 @@ app.post('/register', async (req, res) => {
     try {
         console.log('Hashing password');
         const hashedPW = await bcrypt.hash(password, 10);
-        
+
         const query = 'INSERT INTO user_table (username, password) VALUES (?, ?)';
         connection.query(query, [username, hashedPW], (err, results) => {
             if (err) {
@@ -97,7 +106,7 @@ app.post('/register', async (req, res) => {
 connection.query('SELECT * FROM user_table', (error, results, fields) => {
   if (error) throw error;
   console.log(results); // Results from the database
- 
+
 });
 
 // Define an API endpoint to fetch data from the database
@@ -116,8 +125,8 @@ connection.query('SELECT * FROM user_table', (error, results, fields) => {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
-  
- 
+
+
 
 
 app.listen(port, '0.0.0.0', () => {
