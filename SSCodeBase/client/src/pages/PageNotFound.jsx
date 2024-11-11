@@ -1,7 +1,14 @@
+import pageNotFoundGif from '../Assets/crying-pixelated-anime-girl.gif'
 
 export default function PageNotFound() {
   return (
-    <h1>Page Not Fount. ;P</h1>
-
+    <div style={{
+      fontFamily: "'Times New Roman', Times, serif"
+    }}>
+      <img src={pageNotFoundGif} alt='' />
+      <h1 style={{
+        textIndent: "85px"
+      }}>Page not found. :(</h1>
+    </div>
   )
 }

@@ -6,16 +6,14 @@ const helmet = require('helmet');
 const axios = require("axios");
 const connection = require('./database');
 const path = require('path');
-<<<<<<< HEAD
 
 // Google OAuth2 required stuff:
 const authRouter = require('./google-auth-routes/oauth');
 const requestRouter = require('./google-auth-routes/request');
 // end of Google OAuth2 required stuff
-=======
+
 const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold, HarmBlockThreshhold } = require('@google/generative-ai');
 require('dotenv').config({ path: './key.env'});
->>>>>>> 506462e5d9da065683a830f44cf74379448ddcd5
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -41,15 +39,15 @@ const generationConfig = {
     maxOutputTokens: 8192,
     responseMimeType: "application/json",
   };
-  
+
   // Route to get anime recommendations
   app.post("/api/gemini", async (req, res) => {
     const { animeTitles, feedback } = req.body; // Assume we get titles and feedback in the request body
-  
+
     if (!animeTitles || !feedback) {
       return res.status(400).json({ message: 'Anime titles and feedback are required.' });
     }
-  
+
     // Define the parts for the content
     const parts = [
       {
@@ -59,19 +57,19 @@ const generationConfig = {
         text: "output: Respond with a list of 10 recommended animes based on these titles and reasons. Match the vibe that is interpreted, and provide only anime names in a list without hyphens or numbering."
       }
     ];
-  
+
     try {
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      
+
       // Make the API call to Gemini
       const result = await model.generateContent({
         contents: [{ role: "user", parts }], // Pass parts in the expected format
         generationConfig,  // Include generation config
       });
-  
+
       // Log the full result for debugging purposes
       console.log("Gemini API Response:", result);
-  
+
       // Send the response back to the client
       res.json({ recommendations: result.response.text() });
     } catch (error) {

@@ -14,8 +14,8 @@ async function GoogleOAuth() {
 export default function GoogleSigninButton() {
   return (
     <>
-      <button onClick={() => GoogleOAuth()}>
-        Google Signin
+      <button className="btn" onClick={() => GoogleOAuth()}>
+        Continue with Google
       </button>
     </>
   );

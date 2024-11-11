@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GoogleSigninButton from './GoogleAuth';
 import './loginForm.css';
 
 function LoginForm() {
@@ -66,6 +67,7 @@ function LoginForm() {
         <button className="btn" type="button" onClick={() => navigate('/signup')}>
           Sign Up
         </button>
+        <GoogleSigninButton />
 
         {error && <p className="error-message">{error}</p>}
       </form>
