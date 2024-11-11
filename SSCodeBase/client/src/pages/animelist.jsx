@@ -12,7 +12,7 @@ function AnimeList() {
     const [isFocused, setIsFocused] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedAnime, setSelectedAnime] = useState(null); // New state for selected anime
-    const RESULTS_PER_PAGE = 22;
+    const RESULTS_PER_PAGE = 18;
     const cache = new Map();
     const MAX_CACHE_SIZE = 50;
 
