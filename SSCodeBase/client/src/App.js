@@ -9,7 +9,6 @@ import GoogleSigninButton from './Components/GoogleAuth.jsx';
 
 const App = () => {
   return (
-/*
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />}/>
@@ -18,11 +17,6 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
-*/
-
-    <>
-      <GoogleSigninButton />
-    </>
 
   );
 };
