@@ -70,7 +70,7 @@ html, body {
 
 .loginContainer {
     position: absolute;
-    
+
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -111,16 +111,7 @@ html, body {
     top: 10vh;
     font-size: 90px;
     text-align: center;
-<<<<<<< HEAD
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6), /* Outer white glow */
-                 0px 0px 20px rgba(255, 0, 150, 0.4),   /* Pinkish theme glow */
-                 0px 0px 30px rgba(255, 0, 150, 0.6);
 
-    background: linear-gradient(90deg, #ff85d8, #ff4081); /* Pinkish gradient */
-    -webkit-background-clip: text; /* For webkit browsers */
-    -webkit-text-fill-color: transparent; /* For webkit browsers */
-=======
-    
     z-index: 1;
     color: #ff80ab;
 
@@ -136,14 +127,10 @@ html, body {
     background: linear-gradient(90deg, #74b4da, #10fcfc); /* Blue gradient for AI */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
->>>>>>> 506462e5d9da065683a830f44cf74379448ddcd5
     background-clip: text;
     color: transparent;
 }
 
-<<<<<<< HEAD
-}
-=======
 /* Additional adjustments for very small screens */
 @media (max-width: 600px), (max-height: 600px) {
     #title {
@@ -151,11 +138,10 @@ html, body {
       top: 3vh;
     }
   }
-  
+
   @media (max-width: 400px), (max-height: 400px) {
     #title {
       font-size: clamp(16px, 3vw + 1vh, 40px);
       top: 2vh;
     }
   }
->>>>>>> 506462e5d9da065683a830f44cf74379448ddcd5
