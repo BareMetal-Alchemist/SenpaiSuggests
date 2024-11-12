@@ -5,6 +5,16 @@ import "./animeInfo.css";
 function AnimeInfo({ anime, onClose }) {
     if (!anime) return null;
 
+    const handleAddToLiked = () => {
+        // Get existing liked animes from localStorage or initialize with an empty array
+        const likedAnimes = JSON.parse(localStorage.getItem("likedAnimes")) || [];
+        // Avoid duplicates
+        if (!likedAnimes.find(item => item.title === anime.title)) {
+            likedAnimes.push(anime);
+            localStorage.setItem("likedAnimes", JSON.stringify(likedAnimes));
+        }
+    };
+
     return (
         <div className="anime-info-overlay">
             <button className="close-button" onClick={onClose}>✕</button>
@@ -19,6 +29,7 @@ function AnimeInfo({ anime, onClose }) {
                     <p><strong>Episodes:</strong> {anime.episodes || "N/A"}</p>
                     <p><strong>Score:</strong> {anime.score || "N/A"}</p>
                     <p><strong>Release Date:</strong> {anime.releaseDate || "Unknown"}</p>
+                    <button className="like-button" onClick={handleAddToLiked}>Add to Liked Animes</button>
                 </div>
             </div>
         </div>
