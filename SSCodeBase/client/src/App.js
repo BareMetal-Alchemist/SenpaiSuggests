@@ -3,7 +3,6 @@ import Login from './pages/loginPage';
 import AnimeList from './pages/animelist';
 import WishListPage from './pages/WishListPage.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
-import GoogleSigninButton from './Components/GoogleAuth.jsx';
 import MainMenu from './pages/mainMenu';
 import Signup from './pages/Signup';
 
