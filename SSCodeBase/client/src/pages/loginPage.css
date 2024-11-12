@@ -70,8 +70,8 @@ html, body {
 }
 
 .loginContainer {
-    position: relative;
-    z-index: 1;
+    position: absolute;
+    
     text-align: center;
     background: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(10px); 
@@ -109,24 +109,19 @@ html, body {
 #title {
     position: absolute;
     font-family: 'animeFont';
-    top: 190px;
+    top: 10vh;
     font-size: 90px;
     text-align: center;
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6), /* Outer white glow */
-                 0px 0px 20px rgba(255, 0, 150, 0.4),   /* Pinkish theme glow */
-                 0px 0px 30px rgba(255, 0, 150, 0.6);
-  
-    background: linear-gradient(90deg, #ff85d8, #ff4081); /* Pinkish gradient */
-    -webkit-background-clip: text; /* For webkit browsers */
-    -webkit-text-fill-color: transparent; /* For webkit browsers */
-    background-clip: text;
-    color: transparent;
+    
+    z-index: 1;
+    color: #ff80ab;
 
 }
 
 
+
 #highlight {
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.384), /* Outer white glow */
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.684), /* Outer white glow */
                  0px 0px 20px rgba(154, 186, 223, 0.4),   /* Pinkish theme glow */
                  0px 0px 30px rgba(0, 132, 255, 0.6);
     display: inline-block; /* Ensure it applies only to this span */
@@ -136,3 +131,18 @@ html, body {
     background-clip: text;
     color: transparent;
 }
+
+/* Additional adjustments for very small screens */
+@media (max-width: 600px), (max-height: 600px) {
+    #title {
+      font-size: clamp(20px, 4vw + 1vh, 60px);
+      top: 3vh;
+    }
+  }
+  
+  @media (max-width: 400px), (max-height: 400px) {
+    #title {
+      font-size: clamp(16px, 3vw + 1vh, 40px);
+      top: 2vh;
+    }
+  }
