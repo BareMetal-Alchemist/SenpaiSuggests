@@ -7,7 +7,7 @@ function MainMenu() {
       <div className={styles.header}>
         <h1 className={styles.title}>Senp<span id="highlight">ai</span> Suggests</h1>
         <nav className={styles.navOptions}>
-          <a href="/watchlist" className={styles.navLink}>My Likes</a>
+          <a href="/likedanime" className={styles.navLink}>My Likes</a>
           <a href="/wishlist" className={styles.navLink}>My Wishlist</a>
           <a href="/feeling-lucky" className={styles.navLink}>I'm Feeling Lucky</a>
           <a href="/animelist" className={styles.navLink}>Search</a>
