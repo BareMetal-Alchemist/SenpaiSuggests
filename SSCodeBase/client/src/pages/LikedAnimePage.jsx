@@ -1,14 +1,24 @@
 // LikedAnimesPage.jsx
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./LikedAnimePage.css";
 
 function LikedAnimesPage() {
     const [likedAnimes, setLikedAnimes] = useState([]);
+    const userid = 1;
 
     useEffect(() => {
-        const storedAnimes = JSON.parse(localStorage.getItem("likedAnimes")) || [];
-        setLikedAnimes(storedAnimes);
-    }, []);
+        const fetchLikedAnimes = async () => {
+            try {
+                const response = await axios.get(`/likes/${userid}`);
+                setLikedAnimes(response.data);
+            } catch (error) {
+                console.error("Error fetching liked animes:", error);
+            }
+        };
+
+        fetchLikedAnimes();
+    }, [userid]);
 
     return (
         <div className="liked-animes-page">

@@ -1,33 +1,31 @@
-2024-11-12 21:48:15 0 [Note] Starting MariaDB 10.11.10-MariaDB source revision 3d0fb150289716ca75cd64d62823cf715ee47646 server_uid eoLohoTO1H4GKwTQD0XCdLBkfPQ= as process 13676
-2024-11-12 21:48:15 0 [Note] InnoDB: Compressed tables use zlib 1.3.1
-2024-11-12 21:48:15 0 [Note] InnoDB: Number of transaction pools: 1
-2024-11-12 21:48:15 0 [Note] InnoDB: Using AVX512 instructions
-2024-11-12 21:48:15 0 [Note] InnoDB: Using liburing
-2024-11-12 21:48:15 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
-2024-11-12 21:48:15 0 [Note] InnoDB: Initialized memory pressure event listener
-2024-11-12 21:48:15 0 [Note] InnoDB: Completed initialization of buffer pool
-2024-11-12 21:48:15 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
-2024-11-12 21:48:15 0 [Note] InnoDB: End of log at LSN=67440
-2024-11-12 21:48:15 0 [Note] InnoDB: 128 rollback segments are active.
-2024-11-12 21:48:15 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
-2024-11-12 21:48:15 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
-2024-11-12 21:48:15 0 [Note] InnoDB: log sequence number 67440; transaction id 57
-2024-11-12 21:48:15 0 [Note] InnoDB: Loading buffer pool(s) from /home/nplusplus/Code_Projects/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
-2024-11-12 21:48:15 0 [Note] Plugin 'FEEDBACK' is disabled.
-2024-11-12 21:48:15 0 [Note] InnoDB: Buffer pool(s) load completed at 241112 21:48:15
-2024-11-12 21:48:15 0 [Note] mysqld: ready for connections.
+2024-11-13  4:46:50 0 [Note] Starting MariaDB 10.11.10-MariaDB source revision 3d0fb150289716ca75cd64d62823cf715ee47646 server_uid eoLohoTO1H4GKwTQD0XCdLBkfPQ= as process 9307
+2024-11-13  4:46:50 0 [Note] InnoDB: Compressed tables use zlib 1.3.1
+2024-11-13  4:46:50 0 [Note] InnoDB: Number of transaction pools: 1
+2024-11-13  4:46:50 0 [Note] InnoDB: Using AVX512 instructions
+2024-11-13  4:46:50 0 [Note] InnoDB: Using liburing
+2024-11-13  4:46:50 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
+2024-11-13  4:46:50 0 [Note] InnoDB: Initialized memory pressure event listener
+2024-11-13  4:46:50 0 [Note] InnoDB: Completed initialization of buffer pool
+2024-11-13  4:46:50 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
+2024-11-13  4:46:50 0 [Note] InnoDB: End of log at LSN=71281
+2024-11-13  4:46:50 0 [Note] InnoDB: 128 rollback segments are active.
+2024-11-13  4:46:50 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+2024-11-13  4:46:50 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+2024-11-13  4:46:50 0 [Note] InnoDB: log sequence number 71281; transaction id 68
+2024-11-13  4:46:50 0 [Note] InnoDB: Loading buffer pool(s) from /home/nplusplus/Code_Projects/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
+2024-11-13  4:46:50 0 [Note] Plugin 'FEEDBACK' is disabled.
+2024-11-13  4:46:50 0 [Note] InnoDB: Buffer pool(s) load completed at 241113  4:46:50
+2024-11-13  4:46:50 0 [Note] mysqld: ready for connections.
 Version: '10.11.10-MariaDB'  socket: '/home/nplusplus/Code_Projects/SenpaiSuggests/SSCodeBase/mysql/mysql.sock'  port: 0  MariaDB Server
-2024-11-12 21:56:29 4 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
-2024-11-12 22:01:50 3 [Warning] Aborted connection 3 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
-2024-11-12 22:19:10 7 [Warning] Aborted connection 7 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
-2024-11-12 22:54:19 8 [Warning] Aborted connection 8 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
-2024-11-12 22:54:22 9 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
-2024-11-12 22:54:22 0 [Note] mysqld (initiated by: unknown): Normal shutdown
-2024-11-12 22:54:22 0 [Note] InnoDB: FTS optimize thread exiting.
-2024-11-12 22:54:23 0 [Note] InnoDB: Starting shutdown...
-2024-11-12 22:54:23 0 [Note] InnoDB: Dumping buffer pool(s) to /home/nplusplus/Code_Projects/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
-2024-11-12 22:54:23 0 [Note] InnoDB: Buffer pool(s) dump completed at 241112 22:54:23
-2024-11-12 22:54:23 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
-2024-11-12 22:54:23 0 [Note] InnoDB: Shutdown completed; log sequence number 71281; transaction id 67
-2024-11-12 22:54:23 0 [Note] mysqld: Shutdown complete
+2024-11-13  4:46:52 3 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
+2024-11-13  8:41:43 6 [Warning] Aborted connection 6 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-13  8:41:47 7 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
+2024-11-13  8:41:47 0 [Note] mysqld (initiated by: unknown): Normal shutdown
+2024-11-13  8:41:47 0 [Note] InnoDB: FTS optimize thread exiting.
+2024-11-13  8:41:47 0 [Note] InnoDB: Starting shutdown...
+2024-11-13  8:41:47 0 [Note] InnoDB: Dumping buffer pool(s) to /home/nplusplus/Code_Projects/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
+2024-11-13  8:41:47 0 [Note] InnoDB: Buffer pool(s) dump completed at 241113  8:41:47
+2024-11-13  8:41:47 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+2024-11-13  8:41:47 0 [Note] InnoDB: Shutdown completed; log sequence number 88975; transaction id 99
+2024-11-13  8:41:47 0 [Note] mysqld: Shutdown complete
 
