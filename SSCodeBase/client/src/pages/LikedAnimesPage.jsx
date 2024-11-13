@@ -1,6 +1,6 @@
 // LikedAnimesPage.jsx
 import React, { useEffect, useState } from "react";
-import "./likeAnimesPage.css";
+import "./LikedAnimesPage.css";
 
 function LikedAnimesPage() {
     const [likedAnimes, setLikedAnimes] = useState([]);
