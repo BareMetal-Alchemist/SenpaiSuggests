@@ -1,15 +1,14 @@
-// reco.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AnimeBox from "../Components/animebox";
+import "./reco.css";
 
 function Reco() {
-    const [likedAnimes, setLikedAnimes] = useState([]);
     const [recommendations, setRecommendations] = useState([]);
-    const [recommendedAnimeDetails, setRecommendedAnimeDetails] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [userid, setUserid] = useState(null);
 
-    // Fetch the current session user ID
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
     useEffect(() => {
         const fetchUserId = async () => {
             try {
@@ -22,109 +21,89 @@ function Reco() {
         fetchUserId();
     }, []);
 
-    // Fetch liked animes for the logged-in user and their details from Jikan
-    useEffect(() => {
-        const fetchLikedAnimes = async () => {
-            if (!userid) return;
-
-            try {
-                const response = await axios.get(`http://localhost:5000/likes/${userid}`, { withCredentials: true });
-                const likedAnimeIds = response.data.map(item => item.mal_id);
-
-                // Fetch anime details from Jikan API for each mal_id
-                const animeDetailsPromises = likedAnimeIds.map(id =>
-                    axios.get(`https://api.jikan.moe/v4/anime/${id}`)
-                );
-
-                const animeDetailsResponses = await Promise.all(animeDetailsPromises);
-                const animeDetails = animeDetailsResponses.map(response => response.data.data);
-
-                setLikedAnimes(animeDetails);
-
-                // Extract anime names to send to Gemini AI
-                const animeNames = animeDetails.map(anime => anime.title);
-                fetchRecommendations(animeNames);
-            } catch (error) {
-                console.error("Error fetching liked animes:", error);
-            }
-        };
-
-        fetchLikedAnimes();
-    }, [userid]);
-
-    // Fetch recommendations from Gemini AI based on liked anime names
-    const fetchRecommendations = async (animeNames) => {
+    const fetchRecommendations = async () => {
+        setLoading(true);
         try {
-            const response = await axios.post("http://localhost:5000/api/gemini", 
-                { animeTitles: animeNames, feedback: "User liked these titles" }, 
+            const likedAnimeResponse = await axios.get(`http://localhost:5000/likes/${userid}`, { withCredentials: true });
+            const likedAnimeIds = likedAnimeResponse.data.map(item => item.mal_id);
+
+            const animeDetailsPromises = likedAnimeIds.map(id => axios.get(`https://api.jikan.moe/v4/anime/${id}`));
+            const animeDetailsResponses = await Promise.all(animeDetailsPromises);
+            const animeNames = animeDetailsResponses.map(response => response.data.data.title);
+
+            const geminiResponse = await axios.post("http://localhost:5000/api/gemini", 
+                { animeTitles: animeNames, feedback: "User liked these titles" },
                 { withCredentials: true }
             );
 
-            // Log the raw response string to the console for debugging
-            console.log("Raw response from Gemini:", response.data.recommendations);
-
-            const recommendedTitles = response.data.recommendations.split("\n").filter(title => title.trim() !== "");
-            setRecommendations(recommendedTitles);
-
-            // Fetch details for each recommended anime from Jikan API
-            fetchRecommendedAnimeDetails(recommendedTitles);
+            const recommendationsList = JSON.parse(geminiResponse.data.recommendations);
+            await fetchPrimaryAnimeDetails(recommendationsList);
         } catch (error) {
             console.error("Error fetching recommendations:", error);
-
-            if (error.response && error.response.data) {
-                console.error("Gemini API Error Response:", error.response.data);
-            }
+        } finally {
+            setLoading(false);
         }
     };
 
-    // Fetch anime details for recommended titles from Jikan
-    const fetchRecommendedAnimeDetails = async (recommendedTitles) => {
+    const fetchPrimaryAnimeDetails = async (recommendationTitles) => {
         try {
-            const animeDetailsPromises = recommendedTitles.map(title =>
-                axios.get(`https://api.jikan.moe/v4/anime?q=${title}&limit=25`)
-            );
+            const uniqueTitles = new Set();
+            const filteredDetails = [];
 
-            const animeDetailsResponses = await Promise.all(animeDetailsPromises);
-            const detailedAnimes = animeDetailsResponses
-                .flatMap(response => response.data.data) // Flatten to combine multiple results for each title
-                .filter(anime => anime); // Filter out any undefined results
+            for (const title of recommendationTitles) {
+                if (uniqueTitles.size >= 10) break;
 
-            setRecommendedAnimeDetails(detailedAnimes);
+                await delay(500);
+
+                const searchResponse = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}&sfw=true`);
+
+                const mainEntry = searchResponse.data.data.find(anime =>
+                    !anime.title.toLowerCase().includes("season") &&
+                    !anime.title.toLowerCase().includes("part") &&
+                    !anime.title.toLowerCase().includes("ova") &&
+                    !anime.title.toLowerCase().includes("special")
+                ) || searchResponse.data.data[0];
+
+                if (mainEntry && !uniqueTitles.has(mainEntry.title)) {
+                    uniqueTitles.add(mainEntry.title);
+                    filteredDetails.push(mainEntry);
+                    console.log(`Added anime to recommendations: ${mainEntry.title}`);
+                } else {
+                    console.log(`Skipped duplicate or non-main entry: ${title}`);
+                }
+            }
+
+            setRecommendations(filteredDetails);
+            localStorage.setItem("recommendations", JSON.stringify(filteredDetails));
         } catch (error) {
-            console.error("Error fetching recommended anime details from Jikan:", error);
+            console.error("Error fetching primary anime details:", error);
         }
     };
 
     return (
-        <div className="reco-page">
-            <h2>Your Liked Animes</h2>
-            {likedAnimes.length === 0 ? (
-                <p>No liked animes yet.</p>
-            ) : (
-                <div className="anime-list">
-                    {likedAnimes.map((anime) => (
-                        <AnimeBox
-                            key={anime.mal_id}
-                            title={anime.title}
-                            imageUrl={anime.images.jpg.image_url}
-                            onClick={() => console.log(`Selected: ${anime.title}`)}
-                        />
-                    ))}
+        <div id="reco-wrapper">
+            <h2 id="reco-title">Anime Recommendations</h2>
+            <button onClick={fetchRecommendations} id="reco-button">
+                Get New Recommendations
+            </button>
+            {loading ? (
+                <div id="loading-screen">
+                    <p>Loading recommendations...</p>
                 </div>
-            )}
-
-            <h2>Recommended Animes</h2>
-            {recommendedAnimeDetails.length === 0 ? (
-                <p>No recommendations yet.</p>
             ) : (
-                <div className="anime-list">
-                    {recommendedAnimeDetails.map((anime, index) => (
-                        <AnimeBox
-                            key={anime.mal_id || index} 
-                            title={anime.title}
-                            imageUrl={anime.images.jpg.image_url || "https://via.placeholder.com/150"}
-                            onClick={() => console.log(`Recommended: ${anime.title}`)}
-                        />
+                <div id="recommendation-list">
+                    {recommendations.map((anime, index) => (
+                        <div className="recommendation-section" key={index}>
+                            <div className="recommendation-content">
+                                <div className="anime-image-container">
+                                    <img className="anime-image" src={anime.images.jpg.image_url} alt={anime.title} />
+                                    <h3 className="anime-title">{anime.title}</h3>
+                                </div>
+                                <div className="anime-description">
+                                    <p>{anime.synopsis || "No description available."}</p>
+                                </div>
+                            </div>
+                        </div>
                     ))}
                 </div>
             )}
