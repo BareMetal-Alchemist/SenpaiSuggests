@@ -12,6 +12,7 @@ function MainMenu() {
           <Link to="/wishlist" className={styles.navLink}>My Wishlist</Link>
           <Link to="/feeling-lucky" className={styles.navLink}>I'm Feeling Lucky</Link>
           <Link to="/animelist" className={styles.navLink}>Search</Link>
+          <Link to="/aboutus" className={styles.navLink}>About Us</Link>
         </nav>
       </div>
       {/* Add any additional content here */}
