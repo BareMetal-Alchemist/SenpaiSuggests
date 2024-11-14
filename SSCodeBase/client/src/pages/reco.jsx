@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import AnimeBox from "../Components/animebox";
 import "./reco.css";
 
 function Reco() {
@@ -24,18 +25,31 @@ function Reco() {
     const fetchRecommendations = async () => {
         setLoading(true);
         try {
+            // Step 1: Fetch liked animes with passages
             const likedAnimeResponse = await axios.get(`http://localhost:5000/likes/${userid}`, { withCredentials: true });
-            const likedAnimeIds = likedAnimeResponse.data.map(item => item.mal_id);
+            const likedAnimeData = likedAnimeResponse.data; // Each item includes mal_id and passage
 
-            const animeDetailsPromises = likedAnimeIds.map(id => axios.get(`https://api.jikan.moe/v4/anime/${id}`));
-            const animeDetailsResponses = await Promise.all(animeDetailsPromises);
-            const animeNames = animeDetailsResponses.map(response => response.data.data.title);
+            // Step 2: Fetch anime titles based on mal_id
+            const animeDetailsPromises = likedAnimeData.map(async (item) => {
+                const response = await axios.get(`https://api.jikan.moe/v4/anime/${item.mal_id}`);
+                return {
+                    title: response.data.data.title,
+                    passage: item.passage
+                };
+            });
 
+            const animeDetails = await Promise.all(animeDetailsPromises);
+
+            // Step 3: Prepare data for Gemini prompt (title + passage)
+            const animeTitlesWithPassages = animeDetails.map(anime => `${anime.title}: ${anime.passage}`);
+
+            // Step 4: Send anime titles and passages to Gemini
             const geminiResponse = await axios.post("http://localhost:5000/api/gemini", 
-                { animeTitles: animeNames, feedback: "User liked these titles" },
+                { animeTitles: animeTitlesWithPassages, feedback: "User liked these titles for the given reasons" },
                 { withCredentials: true }
             );
 
+            // Parse the response and fetch anime details for each recommendation
             const recommendationsList = JSON.parse(geminiResponse.data.recommendations);
             await fetchPrimaryAnimeDetails(recommendationsList);
         } catch (error) {
@@ -53,7 +67,7 @@ function Reco() {
             for (const title of recommendationTitles) {
                 if (uniqueTitles.size >= 10) break;
 
-                await delay(500);
+                await delay(500); // Add delay to avoid hitting API rate limit
 
                 const searchResponse = await axios.get(`https://api.jikan.moe/v4/anime?q=${title}&sfw=true`);
 
@@ -67,9 +81,6 @@ function Reco() {
                 if (mainEntry && !uniqueTitles.has(mainEntry.title)) {
                     uniqueTitles.add(mainEntry.title);
                     filteredDetails.push(mainEntry);
-                    console.log(`Added anime to recommendations: ${mainEntry.title}`);
-                } else {
-                    console.log(`Skipped duplicate or non-main entry: ${title}`);
                 }
             }
 
@@ -88,12 +99,15 @@ function Reco() {
             </button>
             {loading ? (
                 <div id="loading-screen">
+                    <img id ="nez" src = "/load.gif"></img>
                     <p>Loading recommendations...</p>
+                    
                 </div>
             ) : (
                 <div id="recommendation-list">
                     {recommendations.map((anime, index) => (
                         <div className="recommendation-section" key={index}>
+                            
                             <div className="recommendation-content">
                                 <div className="anime-image-container">
                                     <img className="anime-image" src={anime.images.jpg.image_url} alt={anime.title} />

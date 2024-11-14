@@ -160,12 +160,12 @@ app.post('/register', async (req, res) => {
 });
 
 app.post("/likes", async (req, res) => {
-  const { userid, mal_id } = req.body;
-  console.log("Received POST request on /likes with:", { userid, mal_id });
+  const { userid, mal_id, passage } = req.body;
+  console.log("Received POST request on /likes with:", { userid, mal_id, passage });
 
   try {
-    const query = "INSERT INTO likes_table (mal_id, userid) VALUES (?, ?)";
-    connection.query(query, [mal_id, userid], (err, results) => {
+    const query = "INSERT INTO likes_table (mal_id, userid, passage) VALUES (?, ?, ?)";
+    connection.query(query, [mal_id, userid, passage], (err, results) => {
       if (err) {
         console.error("Database error in /likes:", err); // Log database-specific error
         return res.status(500).json({ error: "Error liking anime" });
@@ -182,7 +182,7 @@ app.post("/likes", async (req, res) => {
 
 app.get("/likes/:userid", async (req, res) => {
   const { userid } = req.params;
-  const query = "SELECT * FROM likes_table WHERE userid = ?";
+  const query = "SELECT mal_id, passage FROM likes_table WHERE userid = ?";
   connection.query(query, [userid], (err, results) => {
     if (err) {
       return res.status(500).json({ error: "Error fetching liked animes" });

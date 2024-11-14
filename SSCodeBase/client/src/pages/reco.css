@@ -1,7 +1,7 @@
 /* Wrapper styling */
 #reco-wrapper {
     padding: 20px;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.181), #4a4e69);
+    background: black;
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
 }
@@ -111,4 +111,10 @@
     color: #e0dede;
     font-size: 1em;
     line-height: 1.5;
+}
+
+#nez {
+    width: 130px;
+    height: 100px;
+
 }
