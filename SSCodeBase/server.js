@@ -10,6 +10,7 @@ const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold, HarmBlockThreshhol
 require('dotenv').config({ path: './key.env'});
 
 const app = express();
+const session = require('express-session');
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -95,7 +96,6 @@ app.post('/login', (req, res) => {
     }
 
 
-
     const query = 'SELECT * FROM user_table WHERE username = ?';
     connection.query(query, [username], async (err, results) => {
 
@@ -146,9 +146,52 @@ app.post('/register', async (req, res) => {
 });
 
 
+
+// Session cookies
+app.use(session({
+  secret: 'your-secret-key', 
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+      httpOnly: true,      
+      secure: false        
+  }
+}));
+
+// Sign in check
+app.get("/protected-route", (req, res) => {
+  if (req.session.userId) {
+      res.json({ message: "Welcome, authenticated user!" });
+  } else {
+      res.status(401).json({ error: "Unauthorized" });
+  }
+});
+
+
+app.post("/likes", async (req, res) => {
+  const { userid, mal_id } = req.body;
+  try {
+      await db.query("INSERT INTO likes_table (userid, mal_id) VALUES (?, ?)", [userid, mal_id]);
+      res.status(200).json({ message: "Anime liked successfully" });
+  } catch (error) {
+      res.status(500).json({ error: "Error liking anime" });
+  }
+});
+
+app.get("/likes/:userid", async (req, res) => {
+  const { userid } = req.params;
+  try {
+      const [results] = await db.query("SELECT * FROM likes_table WHERE userid = ?", [userid]);
+      res.status(200).json(results);
+  } catch (error) {
+      res.status(500).json({ error: "Error fetching liked animes" });
+  }
+});
+
+
 connection.query('SELECT * FROM user_table', (error, results, fields) => {
   if (error) throw error;
-  console.log(results); // Results from the database
+  console.log("Database Connected!"); // Results from the database
  
 });
 

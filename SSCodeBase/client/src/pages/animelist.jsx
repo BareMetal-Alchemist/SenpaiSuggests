@@ -30,6 +30,7 @@ function AnimeList() {
             if (!response.ok) throw new Error(`Error fetching anime: ${response.statusText}`);
             const data = await response.json();
             const animeListData = data.data.map((anime) => ({
+                mal_id: anime.mal_id,
                 title: anime.titles[0].title,
                 imageUrl: anime.images.jpg.image_url,
                 description: anime.synopsis,
