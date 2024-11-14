@@ -19,6 +19,7 @@ function LoginForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
+        credentials: 'include',
       });
 
       const result = await response.json();
@@ -26,6 +27,7 @@ function LoginForm() {
       if (response.ok) {
         // Navigate to the main menu on successful login
         navigate('/mainmenu');
+        
       } else {
         // Display error message from the server
         setError(result.message || 'Login failed. Please check your credentials.');

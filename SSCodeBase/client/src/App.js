@@ -3,6 +3,7 @@ import LoginPage from './pages/loginPage';
 import AnimeList from './pages/animelist';
 import MainMenu from './pages/mainMenu';
 import Signup from './pages/Signup';
+import Rec from './pages/reco';
 import LikedAnimesPage from './pages/LikedAnimePage';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/animelist" element={<AnimeList />} />
         <Route path="/mainmenu" element={<MainMenu />} />
         <Route path="/likes" element={<LikedAnimesPage/>}/>
+        <Route path="/reco" element={<Rec/>}/>
         <Route path="/register" element={<Signup />} />
         
       </Routes>
