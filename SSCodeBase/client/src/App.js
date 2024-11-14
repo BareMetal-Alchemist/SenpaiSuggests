@@ -4,6 +4,7 @@ import AnimeList from './pages/animelist';
 import MainMenu from './pages/mainMenu';
 import LikedAnimesPage from './pages/LikedAnimesPage';
 import Signup from './pages/Signup';
+import AboutUs from './pages/AboutUs';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/mainmenu" element={<MainMenu />} />
         <Route path="/likedanime" element={<LikedAnimesPage />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/aboutus" element={<AboutUs />} />
         
       </Routes>
     </Router>
