@@ -24,7 +24,7 @@ function LikedAnimesPage() {
                                 <h3>{anime.title}</h3>
                                 <p>{anime.description || "No description available."}</p>
                             </div>
-                        </div>
+                      </div>
                     ))}
                 </div>
             )}

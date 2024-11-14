@@ -15,6 +15,17 @@ function AnimeInfo({ anime, onClose }) {
         }
     };
 
+    // REPLACE WITH SQL STUFF...
+    const handleAddToWishList = () => {
+        const wishList = JSON.parse(localStorage.getItem("wishList")) || [];
+
+        if (!wishList.find(elem => elem.title === anime.title)) {
+          wishList.push(anime);
+          localStorage.setItem("wishList", JSON.stringify(wishList));
+        }
+    }
+    // ...yeah. ;-;
+
     return (
         <div className="anime-info-overlay">
             <button className="close-button" onClick={onClose}>✕</button>
@@ -30,6 +41,7 @@ function AnimeInfo({ anime, onClose }) {
                     <p><strong>Score:</strong> {anime.score || "N/A"}</p>
                     <p><strong>Release Date:</strong> {anime.releaseDate || "Unknown"}</p>
                     <button className="like-button" onClick={handleAddToLiked}>Add to Liked Animes</button>
+                    <button className="like-button" onClick={handleAddToWishList}>Add to Wish List</button>
                 </div>
             </div>
         </div>
@@ -37,4 +49,3 @@ function AnimeInfo({ anime, onClose }) {
 }
 
 export default AnimeInfo;
-

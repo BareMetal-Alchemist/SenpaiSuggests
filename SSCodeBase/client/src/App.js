@@ -5,6 +5,7 @@ import Signup from './pages/Signup';
 import AnimeList from './pages/animelist';
 import LikedAnimesPage from './pages/LikedAnimesPage.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
+import WishListPage from './pages/WishListPage.jsx';
 
 const App = () => {
   return (
@@ -16,10 +17,10 @@ const App = () => {
         <Route path="/mainmenu" element={<MainMenu />} />
         <Route path="/animelist" element={<AnimeList />} />
         <Route path="/likedanime" element={<LikedAnimesPage />} />
+        <Route path="/wishlist" element={<WishListPage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
-
   );
 };
 
