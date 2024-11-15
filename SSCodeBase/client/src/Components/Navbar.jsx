@@ -15,6 +15,7 @@ export default function Navbar() {
           <Link to="/wishlist" className='navLink'>My Wishlist</Link>
           <Link to="/feeling-lucky" className='navLink'>I'm Feeling Lucky</Link>
           <Link to="/animelist" className='navLink'>Search</Link>
+          <Link to="/reco" className={styles.navLink}>Ask Senpai</Link>
           <Link to="/aboutus" className='navLink'>About Us</Link>
         </div>
       </nav>

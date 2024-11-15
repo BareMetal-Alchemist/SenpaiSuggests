@@ -1,0 +1,120 @@
+/* Wrapper styling */
+#reco-wrapper {
+    padding: 20px;
+    background: black;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Title styling */
+#reco-title {
+    color: #ff80ab;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-family: 'animeFont';
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7), 0px 0px 20px rgba(154, 186, 223, 0.4);
+}
+
+/* Button styling */
+#reco-button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    background: linear-gradient(90deg, #ff4081, #ff80ab);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+#reco-button:hover {
+    background: linear-gradient(90deg, #ff80ab, #ff4081);
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Loading Screen styling */
+#loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: #ff80ab;
+    font-size: 1.5em;
+    animation: loadingAnimation 2s ease-in-out infinite;
+}
+
+@keyframes loadingAnimation {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Anime List styling */
+#recommendation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Recommendation section styling */
+.recommendation-section {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Anime Image styling */
+.anime-image-container {
+    flex: 0 0 150px;
+    margin-right: 20px;
+}
+
+.anime-image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.anime-image:hover {
+    transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+}
+
+/* Anime Content styling */
+.recommendation-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #e0dede;
+}
+
+.anime-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ff80ab;
+    margin-bottom: 5px;
+}
+
+.anime-description {
+    color: #e0dede;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+#nez {
+    width: 130px;
+    height: 100px;
+
+}

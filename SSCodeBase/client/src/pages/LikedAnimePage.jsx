@@ -1,17 +1,46 @@
 // LikedAnimesPage.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./LikedAnimesPage.css";
+import AnimeBox from "../Components/animebox"; // Import AnimeBox component
+import "./LikedAnimePage.css";
 
 function LikedAnimesPage() {
     const [likedAnimes, setLikedAnimes] = useState([]);
-    const userid = 1;
+    const [userid, setUserid] = useState(null);
 
     useEffect(() => {
-        const fetchLikedAnimes = async () => {
+        // Fetch the current session user ID
+        const fetchUserId = async () => {
             try {
-                const response = await axios.get(`/likes/${userid}`);
-                setLikedAnimes(response.data);
+                const response = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
+                setUserid(response.data.userId);
+            } catch (error) {
+                console.error("Error fetching user ID:", error);
+            }
+        };
+
+        fetchUserId();
+    }, []);
+
+    useEffect(() => {
+        // Fetch liked animes for the logged-in user
+        const fetchLikedAnimes = async () => {
+            if (!userid) return;
+
+            try {
+                // Fetch the list of liked anime IDs from the database
+                const response = await axios.get(`http://localhost:5000/likes/${userid}`, { withCredentials: true });
+                const likedAnimeIds = response.data.map(item => item.mal_id);
+
+                // Fetch anime details from Jikan API for each mal_id
+                const animeDetailsPromises = likedAnimeIds.map(id =>
+                    axios.get(`https://api.jikan.moe/v4/anime/${id}`)
+                );
+
+                const animeDetailsResponses = await Promise.all(animeDetailsPromises);
+                const animeDetails = animeDetailsResponses.map(response => response.data.data);
+
+                setLikedAnimes(animeDetails);
             } catch (error) {
                 console.error("Error fetching liked animes:", error);
             }
@@ -27,14 +56,13 @@ function LikedAnimesPage() {
                 <p>No liked animes yet.</p>
             ) : (
                 <div className="liked-animes-list">
-                    {likedAnimes.map((anime, index) => (
-                        <div key={index} className="anime-item">
-                            <img src={anime.imageUrl} alt={anime.title} />
-                            <div>
-                                <h3>{anime.title}</h3>
-                                <p>{anime.description || "No description available."}</p>
-                            </div>
-                        </div>
+                    {likedAnimes.map((anime) => (
+                        <AnimeBox
+                            key={anime.mal_id}
+                            title={anime.title}
+                            imageUrl={anime.images.jpg.image_url}
+                            onClick={() => console.log(`Selected: ${anime.title}`)} // Example onClick action
+                        />
                     ))}
                 </div>
             )}

@@ -3,6 +3,10 @@ import Login from './pages/loginPage';
 import MainMenu from './pages/mainMenu';
 import Navbar from './Components/Navbar.jsx';
 import Signup from './pages/Signup';
+import Rec from './pages/reco';
+import Test from './pages/testmenu';
+import LikedAnimesPage from './pages/LikedAnimePage';
+
 import AnimeList from './pages/animelist';
 import LikedAnimesPage from './pages/LikedAnimePage.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
@@ -28,8 +32,11 @@ const AppItself = () => {
         <Route path="/register" element={<Signup />} />
         <Route path="/mainmenu" element={<MainMenu />} />
         <Route path="/animelist" element={<AnimeList />} />
-        <Route path="/likedanime" element={<LikedAnimesPage />} />
+        <Route path="/likes" element={<LikedAnimesPage />} />
         <Route path="/wishlist" element={<WishListPage />} />
+        <Route path="/reco" element={<Rec />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/register" element={<Signup />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
