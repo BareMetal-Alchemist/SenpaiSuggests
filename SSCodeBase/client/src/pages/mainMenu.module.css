@@ -1,58 +1,50 @@
 .mainMenuContainer {
+    position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     font-family: 'Poppins', sans-serif;
     color: #fff;
-    padding-top: 80px;
     background: black;
+    overflow: hidden;
+    height: 100vh;
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px 20px; 
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5), 0px 0px 30px rgba(255, 0, 150, 0.3);
-    position: fixed;
+.parallaxCanvas {
+    position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
-    box-sizing: border-box; 
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Send canvas behind the content */
+}
+
+.titleContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    animation: scrollTitle 2s ease-in-out infinite;
 }
 
 .title {
-    font-family: 'animeFont';
-    font-size: 2rem;
+    font-family: 'animeFont', sans-serif;
+    font-size: 6rem; /* Adjust size for large text */
     color: #ff80ab;
+    margin: 0;
+    z-index: 1;
 }
 
-.navOptions {
-    display: flex;
-    gap: 15px; 
-}
-
-.navLink {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    white-space: nowrap; 
-}
-
-.navLink:hover {
-    color: #ff80ab;
-}
-
-@media (max-width: 768px) {
-    .title {
-        font-size: 1.5rem;
+@keyframes scrollTitle {
+    0% {
+        transform: translate(-50%, -50%) translateY(-100px);
     }
-    .navLink {
-        font-size: 1rem; 
+    50% {
+        transform: translate(-50%, -50%) translateY(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateY(100px);
     }
 }
