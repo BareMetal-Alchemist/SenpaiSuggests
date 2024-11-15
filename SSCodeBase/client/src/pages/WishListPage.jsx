@@ -13,7 +13,7 @@ function WishListPage() {
 
   return (
     <div className='wish-list-page'>
-      <h2>Wish List</h2>
+      <h2 id='wish-list-title'>Wish List</h2>
       { wishList.length === 0 ? (
         <p>It seems you don't have any animes added to your Wish List yet.</p>
       ) : (

@@ -33,6 +33,11 @@ html, body {
     max-width: 80vw;
 }
 
+.search-and-btn.search {
+  display: inline-flex;
+
+}
+
 /* Search bar styling */
 .search {
     width: 96%;
@@ -61,16 +66,14 @@ html, body {
 
 .search-btn {
   position: absolute;
-  z-index: 3;
-  top: 9%;
-  right: 3.6%;
+  top: 39px;
+  right: 6%;
   background-color: #fd75d2;
   color: white;
   border: none;
   height: 45px;
   width: 55px;
   padding: 10px;
-  margin-top: 20px;
   cursor: pointer;
   border-radius: 40px;
   transition: background-color 0.3s ease;

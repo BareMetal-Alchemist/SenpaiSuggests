@@ -8,10 +8,11 @@
 
 /* Title styling */
 #reco-title {
+    margin-top: 7%;
+    margin-bottom: 20px;
     color: #ff80ab;
     text-align: center;
     font-size: 2em;
-    margin-bottom: 20px;
     font-family: 'animeFont';
     text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7), 0px 0px 20px rgba(154, 186, 223, 0.4);
 }

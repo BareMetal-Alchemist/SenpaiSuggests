@@ -28,7 +28,7 @@ function LoginForm() {
       if (response.ok) {
         // Navigate to the main menu on successful login
         navigate('/mainmenu');
-        
+
       } else {
         // Display error message from the server
         setError(result.message || 'Login failed. Please check your credentials.');
@@ -66,7 +66,6 @@ function LoginForm() {
         </div>
 
         <button className="btn" type="submit">Login</button>
-        {console.log("Hey you up?")}
         <button className="btn" type="button" onClick={() => navigate('/register')}>
           Sign Up
         </button>

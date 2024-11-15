@@ -1,4 +1,6 @@
 .navbar {
+  position: absolute;
+  z-index: 1;
   display: flex;
   align-items: top;
   justify-content: space-between;
@@ -14,6 +16,7 @@
 }
 
 .title {
+  padding-top: 10px;
   font-family: 'animeFont';
   font-size: 2rem;
   color: #ff80ab;
@@ -21,7 +24,8 @@
 
 .navOptions {
   display: flex;
-  gap: 15px;
+  margin-top: 0%;
+  column-gap: 15px;
 }
 
 .navLink {
@@ -31,7 +35,7 @@
   font-weight: bold;
   transition: color 0.3s ease;
   white-space: nowrap;
-  padding-top: 28px
+  padding-top: 20px
 }
 
 .navLink:hover {

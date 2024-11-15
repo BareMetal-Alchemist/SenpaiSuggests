@@ -1,5 +1,5 @@
 .liked-animes-page {
-    padding: 40px;
+    gap: 10px;
     background-color: #4a4e69; /* Same background color as About Us page */
     color: #fff;
     font-family: 'Poppins', sans-serif;
@@ -8,6 +8,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#liked-title {
+  margin-top: 9%;
 }
 
 .description {
@@ -32,7 +36,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
-    padding: 20px;
 }
 
 .anime-item {

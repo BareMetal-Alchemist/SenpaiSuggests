@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+#wish-list-title {
+  margin-top: 6%;
+}
+
 .description {
   text-align: center;
   margin-bottom: 30px;

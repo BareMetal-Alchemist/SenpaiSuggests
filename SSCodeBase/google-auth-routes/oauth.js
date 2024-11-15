@@ -8,6 +8,8 @@ async function getUserData(access_token) {
   const response = await fetch(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`);
   const data = await response.json();
   console.log('User Data: ', data);
+
+  /****  'data' that has 'sub' for user auth!! ('data.sub'?)  ****/
 }
 
 router.get('/', async function (request, response, next) {

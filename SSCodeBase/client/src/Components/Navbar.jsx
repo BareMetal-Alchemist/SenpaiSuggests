@@ -11,11 +11,11 @@ export default function Navbar() {
         </h1>
         <div className='navOptions'>
           <Link to="/mainmenu" className='navLink'>Main Menu</Link>
-          <Link to="/likedanime" className='navLink'>My Likes</Link>
+          <Link to="/likes" className='navLink'>My Likes</Link>
           <Link to="/wishlist" className='navLink'>My Wishlist</Link>
           <Link to="/feeling-lucky" className='navLink'>I'm Feeling Lucky</Link>
           <Link to="/animelist" className='navLink'>Search</Link>
-          <Link to="/reco" className={styles.navLink}>Ask Senpai</Link>
+          <Link to="/reco" className='navLink'>Ask Senpai</Link>
           <Link to="/aboutus" className='navLink'>About Us</Link>
         </div>
       </nav>

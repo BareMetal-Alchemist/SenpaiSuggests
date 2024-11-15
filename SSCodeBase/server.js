@@ -6,13 +6,13 @@ const helmet = require('helmet');
 const axios = require("axios");
 const connection = require('./database');  // Ensure database.js exports the MySQL connection
 const path = require('path');
+const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold, HarmBlockThreshhold } = require('@google/generative-ai');
 
 // Google OAuth2 required stuff:
 const authRouter = require('./google-auth-routes/oauth');
 const requestRouter = require('./google-auth-routes/request');
 // end of Google OAuth2 required stuff
 
-const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold, HarmBlockThreshhold } = require('@google/generative-ai');
 const session = require('express-session');
 require('dotenv').config({ path: './key.env'});
 
@@ -49,7 +49,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Set up Google Generative AI client (assuming correct import and usage)
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+//const { GoogleGenerativeAI } = require('@google/generative-ai');
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Define generationConfig

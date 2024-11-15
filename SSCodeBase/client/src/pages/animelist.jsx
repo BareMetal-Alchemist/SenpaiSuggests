@@ -107,24 +107,26 @@ function AnimeList() {
     return (
         <div className="background">
             <div className="yes">
-                  <input
-                      className="search"
-                      type="text"
-                      placeholder="Enter anime title"
-                      value={searchTitle}
-                      onChange={handleSearchChange}
-                      onFocus={() => setIsFocused(true)}
-                      onBlur={() => setIsFocused(false)}
-                      onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                              e.preventDefault();
-                              handleSearch();
-                          }
-                      }}
-                  />
-                  <button className='search-btn' onClick={handleSearch}>
-                    <img className='search-btn-icon' src={searchIcon} alt='Search' />
-                  </button>
+                  <div className="search-and-btn">
+                      <input
+                          className="search"
+                          type="text"
+                          placeholder="Enter anime title"
+                          value={searchTitle}
+                          onChange={handleSearchChange}
+                          onFocus={() => setIsFocused(true)}
+                          onBlur={() => setIsFocused(false)}
+                          onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                  e.preventDefault();
+                                  handleSearch();
+                              }
+                          }}
+                      />
+                      <button className='search-btn' onClick={handleSearch}>
+                        <img className='search-btn-icon' src={searchIcon} alt='Search' />
+                      </button>
+                  </div>
 
                   {suggestions.length > 0 && isFocused && (
                       <ul className="suggestions show">
