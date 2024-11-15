@@ -54,28 +54,55 @@ const generationConfig = {
 app.post("/api/gemini", async (req, res) => {
   const { animeTitles, feedback } = req.body;
   if (!animeTitles || !feedback) {
-    return res.status(400).json({ message: 'Anime titles and feedback are required.' });
+      return res.status(400).json({ message: 'Anime titles and feedback are required.' });
   }
 
   const parts = [
-    {
-      text: `input: User will pass in anime titles and passages about why they liked those titles. Use this information to respond with up to 10 recommendations for the user. Titles: ${animeTitles}. Reason: ${feedback}.`
-    },
-    {
-      text: "output: Respond with a list of AT LEAST 10 recommended animes based on these titles and reasons. Match the vibe that is interpreted, and provide only anime names in a list without hyphens or numbering."
-    }
+      {
+          text: `input: User will pass in anime titles and passages about why they liked those titles. Use this information to respond with up to 10 recommendations for the user. Titles: ${animeTitles}. Reason: ${feedback}.`
+      },
+      {
+          text: "output: Respond with a list of AT LEAST 10 recommended animes based on these titles and reasons. Match the vibe that is interpreted, and provide only anime names in a list without hyphens or numbering."
+      }
   ];
 
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent({
-      contents: [{ role: "user", parts }],
-      generationConfig,
-    });
-    res.json({ recommendations: result.response.text() });
+      console.log("Sending request to Gemini with parts:", parts);
+
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      console.log("Gemini model initialized:", model);
+
+      const result = await model.generateContent({
+          contents: [{ role: "user", parts }],
+          generationConfig,
+      });
+
+      console.log("Response from Gemini API:", result.response.text());
+      res.json({ recommendations: result.response.text() });
   } catch (error) {
-    console.error("Error with Gemini API:", error.message);
-    res.status(500).json({ message: "Error generating recommendations", details: error.message });
+      console.error("Error with Gemini API:", error.message);
+      console.error("Full error details:", error);
+
+      // Simulate a response for testing when Gemini API is unavailable
+      if (error.message.includes("503")) {
+          console.log("Gemini API overloaded. Returning mock recommendations.");
+          res.json({
+              recommendations: [
+                  "Naruto",
+                  "One Piece",
+                  "Bleach",
+                  "Attack on Titan",
+                  "Demon Slayer",
+                  "My Hero Academia",
+                  "Fullmetal Alchemist: Brotherhood",
+                  "Jujutsu Kaisen",
+                  "Hunter x Hunter",
+                  "Dragon Ball Z"
+              ],
+          });
+      } else {
+          res.status(500).json({ message: "Error generating recommendations", details: error.message });
+      }
   }
 });
 
@@ -190,6 +217,54 @@ app.get("/likes/:userid", async (req, res) => {
     res.status(200).json(results);
   });
 });
+
+app.post("/wishlist", async (req, res) => {
+  const { userid, mal_id } = req.body;
+  try {
+      const query = "INSERT INTO wishlist_table (userid, mal_id) VALUES (?, ?)";
+      connection.query(query, [userid, mal_id], (err, results) => {
+          if (err) {
+              console.error("Error adding to wishlist:", err);
+              return res.status(500).json({ error: "Error adding to wishlist" });
+          }
+          res.status(200).json({ message: "Anime added to wishlist successfully" });
+      });
+  } catch (error) {
+      console.error("Server error adding to wishlist:", error);
+      res.status(500).json({ error: "Server error adding to wishlist" });
+  }
+});
+
+app.get("/wishlist/:userid", async (req, res) => {
+  const { userid } = req.params;
+  const query = "SELECT mal_id FROM wishlist_table WHERE userid = ?";
+  connection.query(query, [userid], (err, results) => {
+      if (err) {
+          return res.status(500).json({ error: "Error fetching wishlist" });
+      }
+      res.status(200).json(results);
+  });
+});
+
+
+app.delete("/wishlist/:userid/:mal_id", async (req, res) => {
+  const { userid, mal_id } = req.params;
+  try {
+      const query = "DELETE FROM wishlist_table WHERE userid = ? AND mal_id = ?";
+      connection.query(query, [userid, mal_id], (err, results) => {
+          if (err) {
+              console.error("Error removing from wishlist:", err);
+              return res.status(500).json({ error: "Error removing from wishlist" });
+          }
+          res.status(200).json({ message: "Anime removed from wishlist successfully" });
+      });
+  } catch (error) {
+      console.error("Server error removing from wishlist:", error);
+      res.status(500).json({ error: "Server error removing from wishlist" });
+  }
+});
+
+
 
 // Serve React app for any route not handled by the API
 app.get('*', (req, res) => {

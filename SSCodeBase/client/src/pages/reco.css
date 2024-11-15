@@ -1,5 +1,6 @@
 /* Wrapper styling */
 #reco-wrapper {
+    
     padding: 20px;
     background: black;
     min-height: 100vh;
@@ -8,6 +9,7 @@
 
 /* Title styling */
 #reco-title {
+    margin-top: 120px;
     color: #ff80ab;
     text-align: center;
     font-size: 2em;
