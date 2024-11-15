@@ -1,57 +1,34 @@
-<<<<<<< HEAD
-2024-11-14  2:05:35 0 [Note] Starting MariaDB 10.11.9-MariaDB source revision 0e8fb977b00983d98c4c35e39bc1f36463095938 server_uid 9QcOrwX3sY2+YTwJtLeFi1npER8= as process 17569
-2024-11-14  2:05:35 0 [Note] InnoDB: Compressed tables use zlib 1.3.1
-2024-11-14  2:05:35 0 [Note] InnoDB: Number of transaction pools: 1
-2024-11-14  2:05:35 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
-2024-11-14  2:05:35 0 [Note] InnoDB: Using liburing
-2024-11-14  2:05:35 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
-2024-11-14  2:05:35 0 [Note] InnoDB: Initialized memory pressure event listener
-2024-11-14  2:05:35 0 [Note] InnoDB: Completed initialization of buffer pool
-2024-11-14  2:05:35 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
-2024-11-14  2:05:35 0 [Note] InnoDB: End of log at LSN=67434
-2024-11-14  2:05:35 0 [Note] InnoDB: 128 rollback segments are active.
-2024-11-14  2:05:35 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
-2024-11-14  2:05:35 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
-2024-11-14  2:05:35 0 [Note] InnoDB: log sequence number 67434; transaction id 57
-2024-11-14  2:05:35 0 [Note] Plugin 'FEEDBACK' is disabled.
-2024-11-14  2:05:35 0 [Note] InnoDB: Loading buffer pool(s) from /home/venicio/Code-Stuffs/ACM/DEV/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
-2024-11-14  2:05:35 0 [ERROR] InnoDB: Page [page id: space=1, page number=3] log sequence number 70479 is in the future! Current system log sequence number 67434.
-2024-11-14  2:05:35 0 [ERROR] InnoDB: Your database may be corrupt or you may have copied the InnoDB tablespace but not the InnoDB log files. Please refer to https://mariadb.com/kb/en/library/innodb-recovery-modes/ for information about forcing recovery.
-2024-11-14  2:05:35 0 [ERROR] InnoDB: Page [page id: space=2, page number=3] log sequence number 70593 is in the future! Current system log sequence number 67434.
-2024-11-14  2:05:35 0 [ERROR] InnoDB: Your database may be corrupt or you may have copied the InnoDB tablespace but not the InnoDB log files. Please refer to https://mariadb.com/kb/en/library/innodb-recovery-modes/ for information about forcing recovery.
-2024-11-14  2:05:35 0 [Note] InnoDB: Buffer pool(s) load completed at 241114  2:05:35
-2024-11-14  2:05:35 0 [Note] mysqld: ready for connections.
+2024-11-15  4:08:34 0 [Note] Starting MariaDB 10.11.9-MariaDB source revision 0e8fb977b00983d98c4c35e39bc1f36463095938 server_uid 9QcOrwX3sY2+YTwJtLeFi1npER8= as process 20297
+2024-11-15  4:08:34 0 [Note] InnoDB: Compressed tables use zlib 1.3.1
+2024-11-15  4:08:34 0 [Note] InnoDB: Number of transaction pools: 1
+2024-11-15  4:08:34 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
+2024-11-15  4:08:34 0 [Note] InnoDB: Using liburing
+2024-11-15  4:08:34 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
+2024-11-15  4:08:34 0 [Note] InnoDB: Initialized memory pressure event listener
+2024-11-15  4:08:34 0 [Note] InnoDB: Completed initialization of buffer pool
+2024-11-15  4:08:34 0 [Note] InnoDB: File system buffers for log disabled (block size=512 bytes)
+2024-11-15  4:08:34 0 [Note] InnoDB: End of log at LSN=67434
+2024-11-15  4:08:34 0 [Note] InnoDB: 128 rollback segments are active.
+2024-11-15  4:08:34 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
+2024-11-15  4:08:34 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
+2024-11-15  4:08:34 0 [Note] InnoDB: log sequence number 67434; transaction id 57
+2024-11-15  4:08:34 0 [Note] InnoDB: Loading buffer pool(s) from /home/venicio/Code-Stuffs/ACM/DEV/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
+2024-11-15  4:08:34 0 [Note] Plugin 'FEEDBACK' is disabled.
+2024-11-15  4:08:34 0 [ERROR] InnoDB: Page [page id: space=1, page number=3] log sequence number 88645 is in the future! Current system log sequence number 67434.
+2024-11-15  4:08:34 0 [ERROR] InnoDB: Your database may be corrupt or you may have copied the InnoDB tablespace but not the InnoDB log files. Please refer to https://mariadb.com/kb/en/library/innodb-recovery-modes/ for information about forcing recovery.
+2024-11-15  4:08:34 0 [ERROR] InnoDB: Page [page id: space=2, page number=3] log sequence number 88778 is in the future! Current system log sequence number 67434.
+2024-11-15  4:08:34 0 [ERROR] InnoDB: Your database may be corrupt or you may have copied the InnoDB tablespace but not the InnoDB log files. Please refer to https://mariadb.com/kb/en/library/innodb-recovery-modes/ for information about forcing recovery.
+2024-11-15  4:08:34 0 [Note] InnoDB: Buffer pool(s) load completed at 241115  4:08:34
+2024-11-15  4:08:34 0 [Note] mysqld: ready for connections.
 Version: '10.11.9-MariaDB'  socket: '/home/venicio/Code-Stuffs/ACM/DEV/SenpaiSuggests/SSCodeBase/mysql/mysql.sock'  port: 0  MariaDB Server
-=======
-2024-11-13  8:12:47 0 [Note] Starting MariaDB 10.11.10-MariaDB source revision 3d0fb150289716ca75cd64d62823cf715ee47646 server_uid J5tul6NfC1fuiTU6PGdLMrjV/MM= as process 4164
-2024-11-13  8:12:47 0 [Note] InnoDB: Compressed tables use zlib 1.3.1
-2024-11-13  8:12:47 0 [Note] InnoDB: Using transactional memory
-2024-11-13  8:12:47 0 [Note] InnoDB: Number of transaction pools: 1
-2024-11-13  8:12:47 0 [Note] InnoDB: Using crc32 + pclmulqdq instructions
-2024-11-13  8:12:47 0 [Note] InnoDB: Using liburing
-2024-11-13  8:12:47 0 [Note] InnoDB: Initializing buffer pool, total size = 128.000MiB, chunk size = 2.000MiB
-2024-11-13  8:12:47 0 [Note] InnoDB: Completed initialization of buffer pool
-2024-11-13  8:12:47 0 [Note] InnoDB: File system buffers for log disabled (block size=4096 bytes)
-2024-11-13  8:12:47 0 [Note] InnoDB: End of log at LSN=67434
-2024-11-13  8:12:47 0 [Note] InnoDB: 128 rollback segments are active.
-2024-11-13  8:12:47 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
-2024-11-13  8:12:47 0 [Note] InnoDB: Setting file './ibtmp1' size to 12.000MiB. Physically writing the file full; Please wait ...
-2024-11-13  8:12:47 0 [Note] InnoDB: File './ibtmp1' size is now 12.000MiB.
-2024-11-13  8:12:47 0 [Note] InnoDB: log sequence number 67434; transaction id 57
-2024-11-13  8:12:47 0 [Note] InnoDB: Loading buffer pool(s) from /home/a/code/repos/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
-2024-11-13  8:12:47 0 [Note] Plugin 'FEEDBACK' is disabled.
-2024-11-13  8:12:48 0 [Note] InnoDB: Buffer pool(s) load completed at 241113  8:12:48
-2024-11-13  8:12:48 0 [Note] mysqld: ready for connections.
-Version: '10.11.10-MariaDB'  socket: '/home/a/code/repos/SenpaiSuggests/SSCodeBase/mysql/mysql.sock'  port: 0  MariaDB Server
-2024-11-13 19:51:35 3 [Warning] Aborted connection 3 to db: 'user_db' user: 'root' host: 'localhost' (Got timeout reading communication packets)
-2024-11-14  2:01:55 4 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
-2024-11-14  2:01:55 0 [Note] mysqld (initiated by: unknown): Normal shutdown
-2024-11-14  2:01:55 0 [Note] InnoDB: FTS optimize thread exiting.
-2024-11-14  2:01:56 0 [Note] InnoDB: Starting shutdown...
-2024-11-14  2:01:56 0 [Note] InnoDB: Dumping buffer pool(s) to /home/a/code/repos/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
-2024-11-14  2:01:56 0 [Note] InnoDB: Buffer pool(s) dump completed at 241114  2:01:56
-2024-11-14  2:01:56 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
-2024-11-14  2:01:56 0 [Note] InnoDB: Shutdown completed; log sequence number 67434; transaction id 59
-2024-11-14  2:01:56 0 [Note] mysqld: Shutdown complete
+2024-11-15  5:11:11 3 [Warning] Aborted connection 3 to db: 'user_db' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2024-11-15  5:11:14 4 [Warning] Access denied for user 'root'@'localhost' (using password: NO)
+2024-11-15  5:11:14 0 [Note] mysqld (initiated by: unknown): Normal shutdown
+2024-11-15  5:11:14 0 [Note] InnoDB: FTS optimize thread exiting.
+2024-11-15  5:11:14 0 [Note] InnoDB: Starting shutdown...
+2024-11-15  5:11:14 0 [Note] InnoDB: Dumping buffer pool(s) to /home/venicio/Code-Stuffs/ACM/DEV/SenpaiSuggests/SSCodeBase/mysql/data/ib_buffer_pool
+2024-11-15  5:11:14 0 [Note] InnoDB: Buffer pool(s) dump completed at 241115  5:11:14
+2024-11-15  5:11:14 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+2024-11-15  5:11:14 0 [Note] InnoDB: Shutdown completed; log sequence number 67434; transaction id 59
+2024-11-15  5:11:14 0 [Note] mysqld: Shutdown complete
 
->>>>>>> 25bbfbde3bef601457aadeaf423ed8cf237d1b2f

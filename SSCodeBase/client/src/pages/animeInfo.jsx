@@ -1,17 +1,22 @@
 // animeInfo.jsx
 import React from "react";
+import axios from "axios";
 import "./animeInfo.css";
 
-function AnimeInfo({ anime, onClose }) {
+function AnimeInfo({ anime, userid, onClose }) {
     if (!anime) return null;
 
-    const handleAddToLiked = () => {
-        // Get existing liked animes from localStorage or initialize with an empty array
-        const likedAnimes = JSON.parse(localStorage.getItem("likedAnimes")) || [];
-        // Avoid duplicates
-        if (!likedAnimes.find(item => item.title === anime.title)) {
-            likedAnimes.push(anime);
-            localStorage.setItem("likedAnimes", JSON.stringify(likedAnimes));
+    const handleAddToLiked = async () => {
+        try {
+            
+            await axios.post("/likes", {
+                userid,   
+                mal_id: anime.mal_id  
+            });
+            alert("Anime added to your liked list!");
+        } catch (error) {
+            console.error("Error adding anime to liked list:", error);
+            alert("Failed to add anime to liked list.");
         }
     };
 

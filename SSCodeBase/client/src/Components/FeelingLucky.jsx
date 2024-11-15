@@ -1,7 +1,15 @@
 import './FeelingLucky.css'
 
 export default function FeelingLucky() {
-  <div className='frosted-background'>
+  const handleLucky = () => {
 
-  </div>
+  }
+
+  return (
+    <div className='frosted-background'>
+      <button onClick={handleLucky}>
+
+      </button>
+    </div>
+  )
 }

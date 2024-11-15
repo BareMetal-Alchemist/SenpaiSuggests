@@ -1,18 +1,29 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Login from './pages/loginPage';
 import MainMenu from './pages/mainMenu';
+import Navbar from './Components/Navbar.jsx';
 import Signup from './pages/Signup';
 import AnimeList from './pages/animelist';
-import LikedAnimesPage from './pages/LikedAnimesPage.jsx';
+import LikedAnimesPage from './pages/LikedAnimePage.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import WishListPage from './pages/WishListPage.jsx';
 import AboutUs from './pages/AboutUs';
 
-const App = () => {
+const AppItself = () => {
+  const currPage = useLocation();
+  const showNavbar = (
+    (currPage.pathname === '/mainmenu') ||
+    (currPage.pathname === '/animelist') ||
+    (currPage.pathname === '/likedanime') ||
+    (currPage.pathname === '/wishlist') ||
+    (currPage.pathname === '/aboutus')
+  );
+
   return (
-    <Router>
+    <>
+      {showNavbar && <Navbar />}
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />}/>
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/mainmenu" element={<MainMenu />} />
@@ -21,9 +32,17 @@ const App = () => {
         <Route path="/wishlist" element={<WishListPage />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="*" element={<PageNotFound />} />
-
       </Routes>
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppItself />
     </Router>
+
   );
 };
 

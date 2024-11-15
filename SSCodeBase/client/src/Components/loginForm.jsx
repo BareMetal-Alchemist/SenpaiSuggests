@@ -64,6 +64,7 @@ function LoginForm() {
         </div>
 
         <button className="btn" type="submit">Login</button>
+        {console.log("Hey you up?")}
         <button className="btn" type="button" onClick={() => navigate('/register')}>
           Sign Up
         </button>

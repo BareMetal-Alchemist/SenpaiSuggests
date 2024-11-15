@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { debounce } from 'lodash';
 import AnimeBox from '../Components/animebox';
 import AnimeInfo from './animeInfo';
+import searchIcon from '../Assets/search-icon.png';
 import './animelis.css';
 
 function AnimeList() {
@@ -30,6 +31,7 @@ function AnimeList() {
             if (!response.ok) throw new Error(`Error fetching anime: ${response.statusText}`);
             const data = await response.json();
             const animeListData = data.data.map((anime) => ({
+                mal_id: anime.mal_id,
                 title: anime.titles[0].title,
                 imageUrl: anime.images.jpg.image_url,
                 description: anime.synopsis,
@@ -105,34 +107,34 @@ function AnimeList() {
     return (
         <div className="background">
             <div className="yes">
-                <div className="search-container" style={{ position: 'relative' }}>
-                    <input
-                        className="search"
-                        type="text"
-                        placeholder="Enter anime title"
-                        value={searchTitle}
-                        onChange={handleSearchChange}
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                                e.preventDefault();
-                                handleSearch();
-                            }
-                        }}
-                    />
-                    <button onClick={handleSearch}>Search Anime</button>
+                  <input
+                      className="search"
+                      type="text"
+                      placeholder="Enter anime title"
+                      value={searchTitle}
+                      onChange={handleSearchChange}
+                      onFocus={() => setIsFocused(true)}
+                      onBlur={() => setIsFocused(false)}
+                      onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                              e.preventDefault();
+                              handleSearch();
+                          }
+                      }}
+                  />
+                  <button className='search-btn' onClick={handleSearch}>
+                    <img className='search-btn-icon' src={searchIcon} alt='Search' />
+                  </button>
 
-                    {suggestions.length > 0 && isFocused && (
-                        <ul className="suggestions show">
-                            {suggestions.slice(0, 10).map((anime, index) => (
-                                <li key={index} onClick={() => setSearchTitle(anime.title)}>
-                                    {anime.title}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
+                  {suggestions.length > 0 && isFocused && (
+                      <ul className="suggestions show">
+                          {suggestions.slice(0, 10).map((anime, index) => (
+                              <li key={index} onClick={() => setSearchTitle(anime.title)}>
+                                  {anime.title}
+                              </li>
+                          ))}
+                      </ul>
+                  )}
 
                 <div id="no">
                     <div className="anime-list">

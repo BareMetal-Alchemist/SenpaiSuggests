@@ -17,7 +17,7 @@ function WishListPage() {
       { wishList.length === 0 ? (
         <p>It seems you don't have any animes added to your Wish List yet.</p>
       ) : (
-        <div className='wish-list-animes-list'>
+        <div className='wish-list-grid'>
           { wishList.map((anime, index) => {
             <div key={index} className="anime-item">
               <img src={anime.imageUrl} alt={anime.title} />
