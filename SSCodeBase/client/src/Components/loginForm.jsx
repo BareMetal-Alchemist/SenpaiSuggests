@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GoogleSigninButton from './GoogleAuth';
 import './loginForm.css';
 
 function LoginForm() {
@@ -19,6 +20,7 @@ function LoginForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
+        credentials: 'include',
       });
 
       const result = await response.json();
@@ -26,6 +28,7 @@ function LoginForm() {
       if (response.ok) {
         // Navigate to the main menu on successful login
         navigate('/mainmenu');
+
       } else {
         // Display error message from the server
         setError(result.message || 'Login failed. Please check your credentials.');
@@ -66,6 +69,7 @@ function LoginForm() {
         <button className="btn" type="button" onClick={() => navigate('/register')}>
           Sign Up
         </button>
+        <GoogleSigninButton />
 
         {error && <p className="error-message">{error}</p>}
       </form>

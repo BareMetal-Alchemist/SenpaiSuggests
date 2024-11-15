@@ -1,24 +1,69 @@
-// animeInfo.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./animeInfo.css";
 
-function AnimeInfo({ anime, userid, onClose }) {
+function AnimeInfo({ anime, onClose }) {
+    const [userid, setUserid] = useState(null);
+    const [showPassageInput, setShowPassageInput] = useState(false);
+    const [passage, setPassage] = useState("");
+
+    useEffect(() => {
+        // Fetch userid from the server session
+        const fetchUserId = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
+                setUserid(response.data.userId);
+            } catch (error) {
+                console.error("Error fetching user ID:", error);
+                alert("User is not logged in.");
+            }
+        };
+
+        fetchUserId();
+    }, []);
+
     if (!anime) return null;
 
     const handleAddToLiked = async () => {
+        if (!userid) {
+            alert("User ID is not available. Please log in.");
+            return;
+        }
+
+        if (!passage.trim()) {
+            alert("Please enter a passage about why you liked this anime.");
+            return;
+        }
+
         try {
-            
-            await axios.post("/likes", {
-                userid,   
-                mal_id: anime.mal_id  
-            });
+            await axios.post(
+                "http://localhost:5000/likes",
+                {
+                    userid,
+                    mal_id: anime.mal_id,
+                    passage // Send the passage along with other data
+                },
+                { withCredentials: true }
+            );
             alert("Anime added to your liked list!");
+            setShowPassageInput(false);
+            setPassage(""); // Clear the passage input after submission
         } catch (error) {
             console.error("Error adding anime to liked list:", error);
             alert("Failed to add anime to liked list.");
         }
     };
+
+    // REPLACE WITH SQL STUFF...
+    const handleAddToWishList = () => {
+        const wishList = JSON.parse(localStorage.getItem("wishList")) || [];
+
+        if (!wishList.find(elem => elem.title === anime.title)) {
+          wishList.push(anime);
+          localStorage.setItem("wishList", JSON.stringify(wishList));
+        }
+    }
+    // ...yeah. ;-;
 
     return (
         <div className="anime-info-overlay">
@@ -34,7 +79,27 @@ function AnimeInfo({ anime, userid, onClose }) {
                     <p><strong>Episodes:</strong> {anime.episodes || "N/A"}</p>
                     <p><strong>Score:</strong> {anime.score || "N/A"}</p>
                     <p><strong>Release Date:</strong> {anime.releaseDate || "Unknown"}</p>
-                    <button className="like-button" onClick={handleAddToLiked}>Add to Liked Animes</button>
+
+                    <button className="like-button" onClick={handleAddToWishList}>Add to Wish List</button>
+
+                    {/* Button to show passage input */}
+                    {showPassageInput ? (
+                        <div className="passage-input-section">
+                            <textarea
+                                className="passage-input"
+                                placeholder="Enter why you liked this anime..."
+                                value={passage}
+                                onChange={(e) => setPassage(e.target.value)}
+                            />
+                            <button className="submit-like-button" onClick={handleAddToLiked}>
+                                Submit
+                            </button>
+                        </div>
+                    ) : (
+                        <button className="like-button" onClick={() => setShowPassageInput(true)}>
+                            Add to Liked Animes
+                        </button>
+                    )}
                 </div>
             </div>
         </div>
@@ -42,4 +107,3 @@ function AnimeInfo({ anime, userid, onClose }) {
 }
 
 export default AnimeInfo;
-

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1f912b02.css",
+    "main.js": "/static/js/main.7f86039f.js",
+    "static/media/search.webp": "/static/media/search.946c3936b35568dbe16a.webp",
+    "static/media/animeFont.ttf": "/static/media/animeFont.e6be4b64d4ff721ce745.ttf",
+    "index.html": "/index.html",
+    "main.1f912b02.css.map": "/static/css/main.1f912b02.css.map",
+    "main.7f86039f.js.map": "/static/js/main.7f86039f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1f912b02.css",
+    "static/js/main.7f86039f.js"
+  ]
+}

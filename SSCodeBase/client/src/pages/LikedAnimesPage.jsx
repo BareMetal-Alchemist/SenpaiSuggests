@@ -1,55 +1,71 @@
+// LikedAnimesPage.jsx
 import React, { useEffect, useState } from "react";
-import "./likeAnimesPage.css";
+import axios from "axios";
+import AnimeBox from "../Components/animebox"; // Import AnimeBox component
+import "./LikedAnimesPage.css";
 
 function LikedAnimesPage() {
     const [likedAnimes, setLikedAnimes] = useState([]);
-    const [expandedAnime, setExpandedAnime] = useState(null); // Track which anime's description is expanded
+    const [userid, setUserid] = useState(null);
 
     useEffect(() => {
-        const storedAnimes = JSON.parse(localStorage.getItem("likedAnimes")) || [];
-        setLikedAnimes(storedAnimes);
+        // Fetch the current session user ID
+        const fetchUserId = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
+                setUserid(response.data.userId);
+            } catch (error) {
+                console.error("Error fetching user ID:", error);
+            }
+        };
+
+        fetchUserId();
     }, []);
 
-    const handleReadMore = (index) => {
-        if (expandedAnime === index) {
-            setExpandedAnime(null); // Close the description if it's already open
-        } else {
-            setExpandedAnime(index); // Open the description
-        }
-    };
+    useEffect(() => {
+        // Fetch liked animes for the logged-in user
+        const fetchLikedAnimes = async () => {
+            if (!userid) return;
+
+            try {
+                // Fetch the list of liked anime IDs from the database
+                const response = await axios.get(`http://localhost:5000/likes/${userid}`, { withCredentials: true });
+                const likedAnimeIds = response.data.map(item => item.mal_id);
+
+                // Fetch anime details from Jikan API for each mal_id
+                const animeDetailsPromises = likedAnimeIds.map(id =>
+                    axios.get(`https://api.jikan.moe/v4/anime/${id}`)
+                );
+
+                const animeDetailsResponses = await Promise.all(animeDetailsPromises);
+                const animeDetails = animeDetailsResponses.map(response => response.data.data);
+
+                setLikedAnimes(animeDetails);
+            } catch (error) {
+                console.error("Error fetching liked animes:", error);
+            }
+        };
+
+        fetchLikedAnimes();
+    }, [userid]);
 
     return (
         <div className="liked-animes-page">
-            <div className="description">
-                <h1>Liked Animes</h1>
-                {likedAnimes.length === 0 ? (
-                    <p>No liked animes yet.</p>
-                ) : (
-                    <div className="liked-animes-list">
-                        {likedAnimes.map((anime, index) => (
-                            <div key={index} className="anime-item">
-                                <img src={anime.imageUrl} alt={anime.title} />
-                                <div>
-                                    <h3>{anime.title}</h3>
-                                    <p>
-                                        {expandedAnime === index
-                                            ? anime.description // Show full description if expanded
-                                            : anime.description?.substring(0, 100) + '...'} {/* Show truncated description */}
-                                    </p>
-                                </div>
-                                <div className="read-more-container">
-                                    <button
-                                        className="read-more-btn"
-                                        onClick={() => handleReadMore(index)}
-                                    >
-                                        {expandedAnime === index ? "Read Less" : "Read More"}
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
+            <h2 id="liked-title">Liked Animes</h2>
+            {likedAnimes.length === 0 ? (
+                <p>No liked animes yet.</p>
+            ) : (
+                <div className="liked-animes-list">
+                    {likedAnimes.map((anime) => (
+                        <AnimeBox
+                            key={anime.mal_id}
+                            title={anime.title}
+                            imageUrl={anime.images.jpg.image_url}
+                            onClick={() => console.log(`Selected: ${anime.title}`)} // Example onClick action
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

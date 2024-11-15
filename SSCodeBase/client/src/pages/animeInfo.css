@@ -115,3 +115,36 @@
 .like-button:hover {
     background-color: #ff60b5;
 }
+
+.passage-input-section {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.passage-input {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    resize: none;
+    font-size: 1em;
+}
+
+.submit-like-button {
+    padding: 10px 20px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.submit-like-button:hover {
+    background-color: #ff80ab;
+}

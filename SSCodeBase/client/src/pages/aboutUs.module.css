@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #4a4e69; 
+    background-color: #4a4e69;
     padding: 40px;
     color: #fff;
     font-family: 'Poppins', sans-serif;
@@ -12,13 +12,14 @@
 
 .description {
     text-align: center;
+    margin-top: 6%;
     margin-bottom: 30px;
     max-width: 600px;
 }
 
 .description h1 {
     font-size: 2.5em;
-    color: #ff80ab; 
+    color: #ff80ab;
     margin: 0;
 }
 
@@ -38,7 +39,7 @@
 
 .teamSection h2 {
     font-size: 2em;
-    color: #ff80ab; 
+    color: #ff80ab;
     margin-bottom: 20px;
 }
 

@@ -1,20 +1,20 @@
 let pkgs = import <nixpkgs> {};
 in pkgs.mkShell {
   buildInputs = [
-     pkgs.mariadb 
+     pkgs.mariadb
      pkgs.nodejs-18_x
-     
+
      pkgs.libtool
      pkgs.gcc
-     
+
      ];
 
-  
+
 
 
   shellHook = ''
-    NODE_ENV = "development";
-    export npm_config_build_from_source = "true";
+    export NODE_ENV="development"
+    export npm_config_build_from_source="true"
     MYSQL_BASEDIR=${pkgs.mariadb}
     MYSQL_HOME="$PWD/mysql"
     MYSQL_DATADIR="$MYSQL_HOME/data"
@@ -32,7 +32,7 @@ in pkgs.mkShell {
 
     # Starts the daemon
     # - Don't load mariadb global defaults in /etc with `--no-defaults`
-    # - Disable networking with `--skip-networking` and only use the socket so 
+    # - Disable networking with `--skip-networking` and only use the socket so
     #   multiple instances can run at once
     mysqld --no-defaults --skip-networking --datadir="$MYSQL_DATADIR" --pid-file="$MYSQL_PID_FILE" \
       --socket="$MYSQL_UNIX_PORT" 2> "$MYSQL_HOME/mysql.log" &
