@@ -18,7 +18,7 @@ const AppContent = () => {
     (currPage.pathname === '/likes') ||
     (currPage.pathname === '/wishlist') ||
     (currPage.pathname === '/reco') ||
- /* (currPage.pathname === '/OTHER-PAGES-TO-BE-ADDED-IN-THIS-FORMAT') ||*/
+    (currPage.pathname === '/lucky') ||
     (currPage.pathname === '/aboutus')
   );
 

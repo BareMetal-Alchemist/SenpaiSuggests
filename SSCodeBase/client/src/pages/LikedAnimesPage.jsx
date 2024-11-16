@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AnimeBox from "../Components/animebox"; // Import AnimeBox component
-import "./LikedAnimesPage.css";
+import "./LikedAnimePage.css";
 
 function LikedAnimesPage() {
     const [likedAnimes, setLikedAnimes] = useState([]);
@@ -36,7 +36,7 @@ function LikedAnimesPage() {
                 const animeDetailsPromises = likedAnimeIds.map(id =>
                     axios.get(`https://api.jikan.moe/v4/anime/${id}`)
                 );
-
+                
                 const animeDetailsResponses = await Promise.all(animeDetailsPromises);
                 const animeDetails = animeDetailsResponses.map(response => response.data.data);
 
@@ -51,7 +51,7 @@ function LikedAnimesPage() {
 
     return (
         <div className="liked-animes-page">
-            <h2 id="liked-title">Liked Animes</h2>
+            <h2>Liked Animes</h2>
             {likedAnimes.length === 0 ? (
                 <p>No liked animes yet.</p>
             ) : (
