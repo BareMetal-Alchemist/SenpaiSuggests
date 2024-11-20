@@ -50,11 +50,11 @@ const generationConfig = {
 
 
 
-// Gemini AI recommendation route
 app.post("/api/gemini", async (req, res) => {
   const { animeTitles, feedback } = req.body;
+
   if (!animeTitles || !feedback) {
-      return res.status(400).json({ message: 'Anime titles and feedback are required.' });
+      return res.status(400).json({ message: "Anime titles and feedback are required." });
   }
 
   const parts = [
@@ -67,44 +67,39 @@ app.post("/api/gemini", async (req, res) => {
   ];
 
   try {
-      console.log("Sending request to Gemini with parts:", parts);
-
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      console.log("Gemini model initialized:", model);
-
       const result = await model.generateContent({
           contents: [{ role: "user", parts }],
           generationConfig,
       });
 
-      console.log("Response from Gemini API:", result.response.text());
-      res.json({ recommendations: result.response.text() });
+      console.log("Raw response from Gemini API:", result.response.text());
+
+      // Parse the raw response text
+      let responseText = result.response.text();
+      let parsedResponse;
+
+      try {
+          parsedResponse = JSON.parse(responseText);
+      } catch (e) {
+          console.error("Failed to parse response text:", responseText);
+          throw new Error("Gemini API did not return a valid JSON response.");
+      }
+
+      if (parsedResponse && Array.isArray(parsedResponse.recommendations)) {
+          res.json({ recommendations: parsedResponse.recommendations });
+      } else {
+          console.error("Invalid recommendations format:", parsedResponse);
+          throw new Error("Gemini API did not return a valid recommendations array.");
+      }
   } catch (error) {
       console.error("Error with Gemini API:", error.message);
-      console.error("Full error details:", error);
-
-      // Simulate a response for testing when Gemini API is unavailable
-      if (error.message.includes("503")) {
-          console.log("Gemini API overloaded. Returning mock recommendations.");
-          res.json({
-              recommendations: [
-                  "Naruto",
-                  "One Piece",
-                  "Bleach",
-                  "Attack on Titan",
-                  "Demon Slayer",
-                  "My Hero Academia",
-                  "Fullmetal Alchemist: Brotherhood",
-                  "Jujutsu Kaisen",
-                  "Hunter x Hunter",
-                  "Dragon Ball Z"
-              ],
-          });
-      } else {
-          res.status(500).json({ message: "Error generating recommendations", details: error.message });
-      }
+      res.status(500).json({ message: "Error generating recommendations", details: error.message });
   }
 });
+
+
+
 
 // Jikan API fetch route
 app.get("/api/anime/:title", async (req, res) => {
